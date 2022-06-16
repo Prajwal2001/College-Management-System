@@ -20,10 +20,11 @@
         <entry key="..\:/Dev/Projects/Android/CollegeManagement/app/src/main/res/drawable/avatar_8.xml" value="0.124" />
         <entry key="..\:/Dev/Projects/Android/CollegeManagement/app/src/main/res/drawable/avatar_9.xml" value="0.124" />
         <entry key="..\:/Dev/Projects/Android/CollegeManagement/app/src/main/res/layout/content_main.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/Prajw/AndroidStudioProjects/MAD_lab_project/app/src/main/res/layout/activity_main.xml" value="0.17552083333333332" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
