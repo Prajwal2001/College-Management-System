@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">CollegeManagement</string>
+    <string name="app_name">College Management</string>
+    <string name="login">Login</string>
+    <string name="email">E-mail</string>
+    <string name="pwd">Password</string>
+    <string name="forgot_pwd">Forgot Password</string>
 </resources>
