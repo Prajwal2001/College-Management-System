@@ -3,5 +3,7 @@
     <string name="login">Login</string>
     <string name="email">E-mail</string>
     <string name="pwd">Password</string>
+    <string name="admin_login">Admin</string>
+    <string name="teacher_login">Teacher</string>
     <string name="forgot_pwd">Forgot Password</string>
 </resources>

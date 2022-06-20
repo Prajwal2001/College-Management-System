@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/ksit_logo"
+    android
     tools:context=".MainActivity">
 
     <View
@@ -38,7 +39,7 @@
                     android:id="@+id/password"
                     android:layout_width="280dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="44dp"
+                    android:layout_marginTop="20dp"
                     android:background="@drawable/input_bg"
                     android:drawableStart="@drawable/pwd_logo"
                     android:drawablePadding="5dp"
@@ -82,7 +83,7 @@
                     android:id="@+id/emailId"
                     android:layout_width="280dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="76dp"
+                    android:layout_marginTop="20dp"
                     android:background="@drawable/input_bg"
                     android:drawableStart="@drawable/email_logo"
                     android:drawablePadding="5dp"
@@ -95,7 +96,38 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.496"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView" />
+                    app:layout_constraintTop_toBottomOf="@+id/radio_grp" />
+
+                <RadioGroup
+                    android:id="@+id/radio_grp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.496"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView">
+
+                    <RadioButton
+                        android:id="@+id/rb1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/admin_login"
+                        android:textColor="@color/white"
+                        android:buttonTint="@color/white"
+                        android:textSize="30sp" />
+
+                    <RadioButton
+                        android:id="@+id/rb2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="30dp"
+                        android:text="@string/teacher_login"
+                        android:textColor="@color/white"
+                        android:buttonTint="@color/white"
+                        android:textSize="30sp" />
+                </RadioGroup>
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
