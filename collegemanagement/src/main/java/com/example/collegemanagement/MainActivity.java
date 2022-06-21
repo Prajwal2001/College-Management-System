@@ -3,6 +3,7 @@ package com.example.collegemanagement;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -64,12 +65,13 @@ public class MainActivity extends AppCompatActivity {
                                 Log.d("Login Service", document.getId() + " => " + document.getData());
                                 if (document.getData().get("password").equals(inputPass.getText().toString())){
                                     //Log In Successful
-
+                                    Intent i = new Intent(MainActivity.this, AdminPage.class);
+                                    startActivity(i);
 
                                 }
                                 else {
                                     //Log In Failed
-
+                                    Toast.makeText(getApplicationContext(), "Wrong Password", Toast.LENGTH_SHORT).show();
 
                                 }
                             }
