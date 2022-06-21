@@ -23,6 +23,8 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -40,27 +42,24 @@ public class MainActivity extends AppCompatActivity {
         login = findViewById(R.id.login_btn);
 
         login.setOnClickListener(view -> {
-            System.out.println(email.getText().toString());
-            Toast.makeText(this, email.getText().toString(), Toast.LENGTH_SHORT).show();
+            final String emailRegEx = "^[a-zA-Z0-9_+&*-]+(?:\\."+
+                    "[a-zA-Z0-9_+&*-]+)*@" +
+                    "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
+                    "A-Z]{2,7}$";
+            final String passwordRegEx = "^(?=.*[0-9])"
+                    + "(?=.*[a-z])(?=.*[A-Z])"
+                    + "(?=.*[@#$%^&+=])"
+                    + "(?=\\S+$).{8,20}$";
 
-            // Create a new user with a first and last name
-//            Map<String, String> user = new HashMap<>();
-//            user.put("email", email.getText().toString());
-//            user.put("password", pwd.getText().toString());
-//
-//
-//            // Add a new document with a generated ID
-//            db.collection("users")
-//                    .get()
-//                    .addOnSuccessListener(documentReference -> System.out.println("DocumentSnapshot added with ID: " + documentReference.getId()))
-//                    .addOnFailureListener(e -> Log.d("jo_mama", e.toString()));
+            Pattern pattern = Pattern.compile(emailRegEx);
+            boolean emailValidated = pattern.matcher(email.getText().toString()).matches();
 
-            db.collection("users").get().addOnCompleteListener(task -> {
-                if (task.isSuccessful()) {
-                    for (QueryDocumentSnapshot document : task.getResult())
-                        Log.d("DATA", document.getId() + " \n\n\n\n=> " + document.getData());
-                } else Log.d("Get failed: ", "" + task.getException());
-            });
+            pattern = Pattern.compile(passwordRegEx);
+            boolean passwordValidated = pattern.matcher(pwd.getText().toString()).matches();
+
+            if (emailValidated && passwordValidated) Toast.makeText(this, email.getText().toString() + " Logged in Successfully", Toast.LENGTH_SHORT).show();
+            else if (!emailValidated) Toast.makeText(this, "Invalid Email Id", Toast.LENGTH_SHORT).show();
+            else Toast.makeText(this, "Invalid Password", Toast.LENGTH_SHORT).show();
         });
     }
 }
