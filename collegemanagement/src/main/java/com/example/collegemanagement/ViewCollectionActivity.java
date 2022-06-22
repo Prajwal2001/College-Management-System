@@ -44,9 +44,11 @@ public class ViewCollectionActivity extends AppCompatActivity {
                 list.clear();
                 for (DocumentSnapshot doc : documentSnapshots) {
                     Map<String, Object> data = doc.getData();
+                    String item = new String();
                     for (Map.Entry<String, Object> entry : data.entrySet()) {
-                        list.add(entry.toString());
+                        item = item.concat(entry.getKey()+": "+entry.getValue()+"\n");
                     }
+                    list.add(item);
                 }
                 Log.d("List View", "onEvent: " + list.toString());
 
