@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -12,6 +13,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class AdminPage extends AppCompatActivity {
 
     Button signOutBtn;
+    TextView studentBtn;
     private FirebaseAuth mAuth;
 
 
@@ -24,6 +26,13 @@ public class AdminPage extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         signOutBtn = findViewById(R.id.signOutBtn);
+        studentBtn = findViewById(R.id.studentBtn);
+
+        studentBtn.setOnClickListener(view-> {
+            Intent intent = new Intent(AdminPage.this, ViewCollectionActivity.class);
+            intent.putExtra("collection", "student");
+            startActivity(intent);
+        });
 
         signOutBtn.setOnClickListener(view -> {
             Intent i = new Intent(AdminPage.this, MainActivity.class);
