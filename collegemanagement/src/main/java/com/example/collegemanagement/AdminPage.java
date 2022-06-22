@@ -28,6 +28,7 @@ public class AdminPage extends AppCompatActivity {
         signOutBtn.setOnClickListener(view -> {
             Intent i = new Intent(AdminPage.this, MainActivity.class);
             mAuth.signOut();
+            MainActivity.USER_TYPE = "";
             startActivity(i);
         });
     }
