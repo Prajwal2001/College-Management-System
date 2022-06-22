@@ -14,6 +14,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 
+import java.util.Map;
 import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity {
@@ -31,9 +32,16 @@ public class MainActivity extends AppCompatActivity {
         updateSignIn(currentUser);
     }
 
-    private void updateSignIn(FirebaseUser currentUser) {
-        Intent i = new Intent(MainActivity.this, AdminPage.class);
-        startActivity(i);
+    private void updateSignIn(FirebaseUser user) {
+        db.collection("user").document(user.getUid()).get().addOnCompleteListener(t -> {
+            if (t.getResult().exists()) {
+                Toast.makeText(this, "Logged in Successfully: " + t.getResult().getData(), Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(MainActivity.this, AdminPage.class);
+                i.putExtra("userType", t.getResult().getData().get("userType").toString());
+                i.putExtra("userId", user.getUid());
+                startActivity(i);
+            }
+        });
     }
 
     @Override
