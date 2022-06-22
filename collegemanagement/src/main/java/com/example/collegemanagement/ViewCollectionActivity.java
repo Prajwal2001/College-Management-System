@@ -17,6 +17,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class ViewCollectionActivity extends AppCompatActivity {
 
@@ -42,15 +43,18 @@ public class ViewCollectionActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                 list.clear();
                 for (DocumentSnapshot doc : documentSnapshots) {
-                    list.add(doc.getString(doc.getData().toString()));
+                    Map<String, Object> data = doc.getData();
+                    for (Object value : data.values()) {
+                        list.add(value.toString());
+                    }
                 }
                 Log.d("List View", "onEvent: " + list.toString());
-                /*
+
                 ArrayAdapter arrayAdapter = new ArrayAdapter<>(getApplicationContext(),
                         R.layout.activity_view_collection,
                         list);
                 listView.setAdapter(arrayAdapter);
-                */
+
             }
         });
     }
