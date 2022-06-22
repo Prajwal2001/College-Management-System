@@ -44,14 +44,14 @@ public class ViewCollectionActivity extends AppCompatActivity {
                 list.clear();
                 for (DocumentSnapshot doc : documentSnapshots) {
                     Map<String, Object> data = doc.getData();
-                    for (Object value : data.values()) {
-                        list.add(value.toString());
+                    for (Map.Entry<String, Object> entry : data.entrySet()) {
+                        list.add(entry.toString());
                     }
                 }
                 Log.d("List View", "onEvent: " + list.toString());
 
-                ArrayAdapter arrayAdapter = new ArrayAdapter<>(getApplicationContext(),
-                        R.layout.activity_view_collection,
+                ArrayAdapter arrayAdapter = new ArrayAdapter<String>(ViewCollectionActivity.this,
+                        R.layout.view_list_item,
                         list);
                 listView.setAdapter(arrayAdapter);
 
