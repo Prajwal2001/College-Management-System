@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "Logged in Successfully: " + t.getResult().getData(), Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(MainActivity.this, AdminPage.class);
                 i.putExtra("userType", t.getResult().getData().get("userType").toString());
-                i.putExtra("userId", user.getUid());
                 startActivity(i);
             }
         });
@@ -82,6 +81,9 @@ public class MainActivity extends AppCompatActivity {
                                 if (t.getResult().exists()) {
                                     Toast.makeText(this, "Logged in Successfully: " + t.getResult().getData(), Toast.LENGTH_SHORT).show();
                                     updateSignIn(user);
+                                }
+                                else{
+                                    Toast.makeText(this, " User Doesn't Exist ", Toast.LENGTH_SHORT).show();
                                 }
                             });
                         } else Toast.makeText(this, "Login failed", Toast.LENGTH_SHORT).show();
