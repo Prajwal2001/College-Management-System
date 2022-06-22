@@ -6,67 +6,100 @@
     android:layout_height="match_parent"
     tools:context=".AdminPage">
 
-    <androidx.gridlayout.widget.GridLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#6876C3"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="1dp"
-        app:columnCount="2"
-        app:rowCount="4">
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:layout_height="90dp"
-            android:layout_width="150dp"
-            android:layout_margin="10dp"
-            android:src="@drawable/ksit_logo"
-            />
-        <ImageView
-            android:layout_height="90dp"
-            android:layout_width="150dp"
-            android:layout_margin="10dp"
-            android:src="@drawable/ksit_logo"
-            />
-        <ImageView
-            android:layout_height="90dp"
-            android:layout_width="150dp"
-            android:layout_margin="10dp"
-            android:src="@drawable/ksit_logo"
-            />
-        <ImageView
-            android:layout_height="90dp"
-            android:layout_width="150dp"
-            android:layout_margin="10dp"
-            android:src="@drawable/ksit_logo"
-            />
-        <TextView
-            android:layout_height="90dp"
-            android:layout_width="150dp"
-            android:text="Teacher"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="30sp"
-            android:gravity="center"
-            android:background="@color/purple_700"
-            android:layout_margin="10dp"/>
-        <TextView
-            android:id="@+id/studentBtn"
-            android:layout_height="90dp"
-            android:layout_width="150dp"
-            android:text="Student"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="30sp"
-            android:gravity="center"
-            android:background="@color/purple_700"
-            android:layout_margin="10dp"/>
-
-        <Button
+        <androidx.gridlayout.widget.GridLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:id="@+id/signOutBtn"
-            android:backgroundTint="#ff0000"
-            android:text="sign out"/>
+            android:background="#6876C3"
+            app:columnCount="2"
+            app:rowCount="5"
+            tools:ignore="HardcodedText,ContentDescription"
+            tools:layout_editor_absoluteX="1dp"
+            tools:layout_editor_absoluteY="1dp">
 
-    </androidx.gridlayout.widget.GridLayout>
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="90dp"
+                android:layout_margin="10dp"
+                android:src="@drawable/ksit_logo" />
+
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="90dp"
+                android:layout_margin="10dp"
+                android:src="@drawable/ksit_logo" />
+
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="90dp"
+                android:layout_margin="10dp"
+                android:src="@drawable/ksit_logo" />
+
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="90dp"
+                android:layout_margin="10dp"
+                android:src="@drawable/ksit_logo" />
+
+            <TextView
+                android:id="@+id/teacherBtn"
+                android:layout_width="150dp"
+                android:layout_height="90dp"
+                android:layout_margin="10dp"
+                android:background="@color/purple_700"
+                android:gravity="center"
+                android:text="Teacher"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/studentBtn"
+                android:layout_width="150dp"
+                android:layout_height="90dp"
+                android:layout_margin="10dp"
+                android:background="@color/purple_700"
+                android:gravity="center"
+                android:text="Student"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/marksBtn"
+                android:layout_width="150dp"
+                android:layout_height="90dp"
+                android:layout_margin="10dp"
+                android:background="@color/purple_700"
+                android:gravity="center"
+                android:text="Marks"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/subjectBtn"
+                android:layout_width="150dp"
+                android:layout_height="90dp"
+                android:layout_margin="10dp"
+                android:background="@color/purple_700"
+                android:gravity="center"
+                android:text="Subject"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="30sp" />
+
+            <Button
+                android:id="@+id/signOutBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#ff0000"
+                android:gravity="center"
+                android:text="sign out" />
+
+        </androidx.gridlayout.widget.GridLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -17,7 +17,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 
-import java.util.Map;
 import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity {
@@ -27,11 +26,11 @@ public class MainActivity extends AppCompatActivity {
     Button login;
     ProgressBar circularPB;
     EditText inputEmail, inputPass;
-    TextView forgot_pwd;
+    TextView forgotPass;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     private FirebaseAuth mAuth;
 
-    final String emailRegEx = "^[a-zA-Z0-9_+&*-]+(?:\\."+
+    final String emailRegEx = "^[a-zA-Z0-9_+&*-]+(?:\\." +
             "[a-zA-Z0-9_+&*-]+)*@" +
             "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
             "A-Z]{2,7}$";
@@ -39,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
             + "(?=.*[a-z])(?=.*[A-Z])"
             + "(?=.*[@#$%^&+=])"
             + "(?=\\S+$).{8,20}$";
+
 
     @Override
     public void onStart() {
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
                             //i.putExtra("userType", t.getResult().getData().get("userType").toString());
                             startActivity(i);
                         }
-            });
+                    });
     }
 
     private boolean validation(String string, String regEx) {
@@ -79,11 +79,11 @@ public class MainActivity extends AppCompatActivity {
 
         inputEmail = findViewById(R.id.emailId);
         inputPass = findViewById(R.id.password);
-        forgot_pwd = findViewById(R.id.forgot_pwd);
+        forgotPass = findViewById(R.id.forgot_pwd);
         login = findViewById(R.id.login_btn);
         circularPB = findViewById(R.id.progressBar);
 
-        forgot_pwd.setOnClickListener(v -> {
+        forgotPass.setOnClickListener(v -> {
             if (validation(inputEmail.getText().toString(), emailRegEx))
                 mAuth.sendPasswordResetEmail(inputEmail.getText().toString());
             else
@@ -96,24 +96,24 @@ public class MainActivity extends AppCompatActivity {
             boolean passwordValidated = validation(inputPass.getText().toString(), passwordRegEx);
 
             if (emailValidated && passwordValidated) {
-            circularPB.setVisibility(View.VISIBLE);
+                circularPB.setVisibility(View.VISIBLE);
                 mAuth.signInWithEmailAndPassword(inputEmail.getText().toString(), inputPass.getText().toString())
-                    .addOnCompleteListener(this, task -> {
-                        if (task.isSuccessful()) {
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            db.collection("user").document(user.getUid()).get().addOnCompleteListener(t -> {
-                                if (t.getResult().exists())
-                                    updateSignIn(user);
-                                else
-                                    Toast.makeText(this, " User Doesn't Exist ", Toast.LENGTH_SHORT).show();
-                            });
-                        } else {
-                            circularPB.setVisibility(View.INVISIBLE);
-                            Toast.makeText(this, "Login failed", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-            }
-            else if (!emailValidated) Toast.makeText(this, "Invalid Email Id", Toast.LENGTH_SHORT).show();
+                        .addOnCompleteListener(this, task -> {
+                            if (task.isSuccessful()) {
+                                FirebaseUser user = mAuth.getCurrentUser();
+                                db.collection("user").document(user.getUid()).get().addOnCompleteListener(t -> {
+                                    if (t.getResult().exists())
+                                        updateSignIn(user);
+                                    else
+                                        Toast.makeText(this, " User Doesn't Exist ", Toast.LENGTH_SHORT).show();
+                                });
+                            } else {
+                                circularPB.setVisibility(View.INVISIBLE);
+                                Toast.makeText(this, "Login failed", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+            } else if (!emailValidated)
+                Toast.makeText(this, "Invalid Email Id", Toast.LENGTH_SHORT).show();
             else Toast.makeText(this, "Invalid Password", Toast.LENGTH_SHORT).show();
         });
     }

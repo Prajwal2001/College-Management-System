@@ -41,7 +41,7 @@ public class ViewCollectionActivity extends AppCompatActivity {
                 Map<String, Object> data = doc.getData();
                 String item = "";
                 for (Map.Entry<String, Object> entry : data.entrySet()) {
-                    item = item.concat(entry.getKey()+": "+entry.getValue()+"\n");
+                    item = item.concat(entry.getKey() + ": " + entry.getValue() + "\n");
                 }
                 list.add(item);
             }
@@ -51,7 +51,6 @@ public class ViewCollectionActivity extends AppCompatActivity {
                     R.layout.view_list_item,
                     list);
             listView.setAdapter(arrayAdapter);
-
         });
     }
 }
