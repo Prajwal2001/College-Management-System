@@ -46,9 +46,6 @@ public class MainActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        email = findViewById(R.id.emailId);
-        pwd = findViewById(R.id.password);
-
         inputEmail = findViewById(R.id.emailId);
         inputPass = findViewById(R.id.password);
 
@@ -71,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
             boolean passwordValidated = pattern.matcher(inputPass.getText().toString()).matches();
 
 //            if (emailValidated && passwordValidated){
-//                db.collection("admin").whereEqualTo("email", inputEmail.getText().toString()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//                db.collection("admin").whereEqualTo("inputEmail", inputEmail.getText().toString()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
 //                    @Override
 //                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
 //                        if (task.isSuccessful()){
@@ -100,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
 //                });
 
             if (emailValidated && passwordValidated) {
-                mAuth.signInWithEmailAndPassword(email.getText().toString(), pwd.getText().toString())
+                mAuth.signInWithEmailAndPassword(inputEmail.getText().toString(), inputPass.getText().toString())
                     .addOnCompleteListener(this, task -> {
                         if (task.isSuccessful()) {
                             FirebaseUser user = mAuth.getCurrentUser();
