@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -19,7 +21,10 @@ import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static String USER_TYPE;
+
     Button login;
+    ProgressBar circularPB;
     EditText inputEmail, inputPass;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     private FirebaseAuth mAuth;
@@ -33,14 +38,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateSignIn(FirebaseUser user) {
-        db.collection("user").document(user.getUid()).get().addOnCompleteListener(t -> {
-            if (t.getResult().exists()) {
-                Toast.makeText(this, "Logged in Successfully: " + t.getResult().getData(), Toast.LENGTH_SHORT).show();
-                Intent i = new Intent(MainActivity.this, AdminPage.class);
-                i.putExtra("userType", t.getResult().getData().get("userType").toString());
-                startActivity(i);
-            }
-        });
+        if (user != null)
+            db.collection("user")
+                    .document(user.getUid())
+                    .get()
+                    .addOnCompleteListener(t -> {
+                        if (t.getResult().exists()) {
+//                            Toast.makeText(this, "Logged in Successfully: " + t.getResult().getData(), Toast.LENGTH_SHORT).show();
+                            USER_TYPE = t.getResult().getData().get("userType").toString();
+                            Intent i = new Intent(MainActivity.this, AdminPage.class);
+                            //i.putExtra("userType", t.getResult().getData().get("userType").toString());
+                            startActivity(i);
+                        }
+            });
     }
 
     @Override
@@ -55,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
         inputPass = findViewById(R.id.password);
 
         login = findViewById(R.id.login_btn);
+        circularPB = findViewById(R.id.progressBar);
 
         login.setOnClickListener(view -> {
             final String emailRegEx = "^[a-zA-Z0-9_+&*-]+(?:\\."+
@@ -66,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
                     + "(?=.*[@#$%^&+=])"
                     + "(?=\\S+$).{8,20}$";
 
+
             Pattern pattern = Pattern.compile(emailRegEx);
             boolean emailValidated = pattern.matcher(inputEmail.getText().toString()).matches();
 
@@ -73,13 +85,14 @@ public class MainActivity extends AppCompatActivity {
             boolean passwordValidated = pattern.matcher(inputPass.getText().toString()).matches();
 
             if (emailValidated && passwordValidated) {
+                circularPB.setVisibility(View.VISIBLE);
                 mAuth.signInWithEmailAndPassword(inputEmail.getText().toString(), inputPass.getText().toString())
                     .addOnCompleteListener(this, task -> {
                         if (task.isSuccessful()) {
                             FirebaseUser user = mAuth.getCurrentUser();
                             db.collection("user").document(user.getUid()).get().addOnCompleteListener(t -> {
                                 if (t.getResult().exists()) {
-                                    Toast.makeText(this, "Logged in Successfully: " + t.getResult().getData(), Toast.LENGTH_SHORT).show();
+//                                    Toast.makeText(this, "Logged in Successfully: " + t.getResult().getData(), Toast.LENGTH_SHORT).show();
                                     updateSignIn(user);
                                 }
                                 else{
@@ -89,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
                         } else Toast.makeText(this, "Login failed", Toast.LENGTH_SHORT).show();
                     });
 
-                Toast.makeText(this, inputEmail.getText().toString() + " Logged in Successfully", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(this, inputEmail.getText().toString() + " Logged in Successfully", Toast.LENGTH_SHORT).show();
 
             }
             else if (!emailValidated) Toast.makeText(this, "Invalid Email Id", Toast.LENGTH_SHORT).show();
