@@ -15,6 +15,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -32,11 +35,14 @@ public class MainActivity extends AppCompatActivity {
     Button login;
     EditText email, pwd;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mAuth = FirebaseAuth.getInstance();
 
         email = findViewById(R.id.emailId);
         pwd = findViewById(R.id.password);
@@ -59,31 +65,16 @@ public class MainActivity extends AppCompatActivity {
             boolean passwordValidated = pattern.matcher(pwd.getText().toString()).matches();
 
             if (emailValidated && passwordValidated) {
-//                Toast.makeText(this, email.getText().toString() + " Logged in Successfully", Toast.LENGTH_SHORT).show();
-//                Map<String, String> user = new HashMap<>();
-//                user.put("email", email.getText().toString());
-//                user.put("password", pwd.getText().toString());
-//
-//                db.collection("admin").document(email.getText().toString())
-//                        .set(user)
-//                        .addOnSuccessListener(a -> Log.d("SUCCESS", "Document created successfully"))
-//                        .addOnFailureListener(e -> Log.d("FAIL", "" + e));
-                db.collection("admin")
-                        .document(email.getText().toString())
-                        .get()
-                        .addOnCompleteListener(task -> {
-                           if (task.isSuccessful()) {
-                               if (task.getResult().exists()) {
-                                   Map<String, String> user = new HashMap<>();
-                                   user.put("email", email.getText().toString());
-                                   user.put("password", pwd.getText().toString());
-                                   if(Objects.equals(task.getResult().getData(), user))
-                                       Toast.makeText(this, "Logged in successfully", Toast.LENGTH_SHORT).show();
-                                   else Toast.makeText(this, "User doesn't exist", Toast.LENGTH_SHORT).show();
-                               }
-                               else Toast.makeText(this, "User doesn't exist", Toast.LENGTH_SHORT).show();
-                           }
-                        });
+                mAuth.signInWithEmailAndPassword(email.getText().toString(), pwd.getText().toString())
+                    .addOnCompleteListener(this, task -> {
+                        if (task.isSuccessful()) {
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            db.collection("user").document(user.getUid()).get().addOnCompleteListener(t -> {
+                                if (t.getResult().exists())
+                                        Toast.makeText(this, "Logged in Successfully: " + t.getResult().getData(), Toast.LENGTH_SHORT).show();
+                            });
+                        } else Toast.makeText(this, "Login failed", Toast.LENGTH_SHORT).show();
+                    });
             }
             else if (!emailValidated) Toast.makeText(this, "Invalid Email Id", Toast.LENGTH_SHORT).show();
             else Toast.makeText(this, "Invalid Password", Toast.LENGTH_SHORT).show();
