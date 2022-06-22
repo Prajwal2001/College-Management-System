@@ -23,6 +23,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -57,7 +58,33 @@ public class MainActivity extends AppCompatActivity {
             pattern = Pattern.compile(passwordRegEx);
             boolean passwordValidated = pattern.matcher(pwd.getText().toString()).matches();
 
-            if (emailValidated && passwordValidated) Toast.makeText(this, email.getText().toString() + " Logged in Successfully", Toast.LENGTH_SHORT).show();
+            if (emailValidated && passwordValidated) {
+//                Toast.makeText(this, email.getText().toString() + " Logged in Successfully", Toast.LENGTH_SHORT).show();
+//                Map<String, String> user = new HashMap<>();
+//                user.put("email", email.getText().toString());
+//                user.put("password", pwd.getText().toString());
+//
+//                db.collection("admin").document(email.getText().toString())
+//                        .set(user)
+//                        .addOnSuccessListener(a -> Log.d("SUCCESS", "Document created successfully"))
+//                        .addOnFailureListener(e -> Log.d("FAIL", "" + e));
+                db.collection("admin")
+                        .document(email.getText().toString())
+                        .get()
+                        .addOnCompleteListener(task -> {
+                           if (task.isSuccessful()) {
+                               if (task.getResult().exists()) {
+                                   Map<String, String> user = new HashMap<>();
+                                   user.put("email", email.getText().toString());
+                                   user.put("password", pwd.getText().toString());
+                                   if(Objects.equals(task.getResult().getData(), user))
+                                       Toast.makeText(this, "Logged in successfully", Toast.LENGTH_SHORT).show();
+                                   else Toast.makeText(this, "User doesn't exist", Toast.LENGTH_SHORT).show();
+                               }
+                               else Toast.makeText(this, "User doesn't exist", Toast.LENGTH_SHORT).show();
+                           }
+                        });
+            }
             else if (!emailValidated) Toast.makeText(this, "Invalid Email Id", Toast.LENGTH_SHORT).show();
             else Toast.makeText(this, "Invalid Password", Toast.LENGTH_SHORT).show();
         });
