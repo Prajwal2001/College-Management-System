@@ -30,7 +30,7 @@ public class AdminPage extends AppCompatActivity {
 
         studentBtn.setOnClickListener(view-> {
             Intent intent = new Intent(AdminPage.this, ViewCollectionActivity.class);
-            intent.putExtra("collection", "student");
+            intent.putExtra("collection", "user");
             startActivity(intent);
         });
 

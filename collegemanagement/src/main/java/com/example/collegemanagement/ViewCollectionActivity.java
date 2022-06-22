@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -42,6 +44,13 @@ public class ViewCollectionActivity extends AppCompatActivity {
                 for (DocumentSnapshot doc : documentSnapshots) {
                     list.add(doc.getString(doc.getData().toString()));
                 }
+                Log.d("List View", "onEvent: " + list.toString());
+                /*
+                ArrayAdapter arrayAdapter = new ArrayAdapter<>(getApplicationContext(),
+                        R.layout.activity_view_collection,
+                        list);
+                listView.setAdapter(arrayAdapter);
+                */
             }
         });
     }
