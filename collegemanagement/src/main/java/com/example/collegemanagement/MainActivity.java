@@ -64,6 +64,35 @@ public class MainActivity extends AppCompatActivity {
             pattern = Pattern.compile(passwordRegEx);
             boolean passwordValidated = pattern.matcher(pwd.getText().toString()).matches();
 
+//            if (emailValidated && passwordValidated){
+//                db.collection("admin").whereEqualTo("email", inputEmail.getText().toString()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//                        if (task.isSuccessful()){
+//                            QuerySnapshot query = task.getResult();
+//                            if (query.getDocuments().isEmpty())
+//                                Log.d("Login Service", "No such user");
+//                            else{
+//                                DocumentSnapshot document = query.getDocuments().get(0);
+//                                Log.d("Login Service", document.getId() + " => " + document.getData());
+//                                if (document.getData().get("password").equals(inputPass.getText().toString())){
+//                                    //Log In Successful
+//                                    Intent i = new Intent(MainActivity.this, AdminPage.class);
+//                                    startActivity(i);
+//
+//                                }
+//                                else {
+//                                    //Log In Failed
+//                                    Toast.makeText(getApplicationContext(), "Wrong Password", Toast.LENGTH_SHORT).show();
+//
+//                                }
+//                            }
+//                        } else {
+//                            Log.d("Login Service", "Error getting user: ", task.getException());
+//                        }
+//                    }
+//                });
+
             if (emailValidated && passwordValidated) {
                 mAuth.signInWithEmailAndPassword(email.getText().toString(), pwd.getText().toString())
                     .addOnCompleteListener(this, task -> {
