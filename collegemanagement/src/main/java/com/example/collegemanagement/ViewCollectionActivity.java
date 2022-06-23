@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,7 +32,14 @@ public class ViewCollectionActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String collection = intent.getStringExtra("collection");
 
+        TextView addBtn = findViewById(R.id.addDocument);
         listView = findViewById(R.id.lv);
+
+        addBtn.setOnClickListener(view -> {
+            Intent i = new Intent(getApplicationContext(), AddCollection.class);
+            i.putExtra("collection",collection);
+            startActivity(i);
+        });
 
         db.collection(collection).addSnapshotListener((documentSnapshots, e) -> {
             if (e != null)
