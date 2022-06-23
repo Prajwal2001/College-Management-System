@@ -29,6 +29,7 @@
         <entry key="..\:/MAD_lab_project/collegemanagement/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/Prajw/AndroidStudioProjects/MAD_lab_project/app/src/main/res/layout/activity_main.xml" value="0.17552083333333332" />
         <entry key="..\:/Users/Prajw/AndroidStudioProjects/MAD_lab_project/collegemanagement/src/main/res/drawable/input_bg.xml" value="0.183" />
+        <entry key="..\:/Users/Prajw/AndroidStudioProjects/MAD_lab_project/collegemanagement/src/main/res/layout/activity_add_collection.xml" value="0.17552083333333332" />
         <entry key="..\:/Users/Prajw/AndroidStudioProjects/MAD_lab_project/collegemanagement/src/main/res/layout/activity_admin_page.xml" value="0.17552083333333332" />
         <entry key="..\:/Users/Prajw/AndroidStudioProjects/MAD_lab_project/collegemanagement/src/main/res/layout/activity_main.xml" value="0.17916666666666667" />
         <entry key="..\:/Users/Prajw/AndroidStudioProjects/MAD_lab_project/collegemanagement/src/main/res/layout/activity_view_collection.xml" value="0.17552083333333332" />
@@ -36,7 +37,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

@@ -6,100 +6,71 @@
     android:layout_height="match_parent"
     tools:context=".AdminPage">
 
-    <ScrollView
+    <androidx.gridlayout.widget.GridLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#6876C3"
+        app:columnCount="2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:rowCount="5"
+        tools:ignore="HardcodedText,ContentDescription"
+        tools:layout_editor_absoluteX="1dp">
 
-        <androidx.gridlayout.widget.GridLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/teacherBtn"
+            android:layout_width="150dp"
+            android:layout_height="90dp"
+            android:layout_margin="10dp"
+            android:background="@color/purple_700"
+            android:gravity="center"
+            android:text="Teacher"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/studentBtn"
+            android:layout_width="150dp"
+            android:layout_height="90dp"
+            android:layout_margin="10dp"
+            android:background="@color/purple_700"
+            android:gravity="center"
+            android:text="Student"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/marksBtn"
+            android:layout_width="150dp"
+            android:layout_height="90dp"
+            android:layout_margin="10dp"
+            android:background="@color/purple_700"
+            android:gravity="center"
+            android:text="Marks"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/subjectBtn"
+            android:layout_width="150dp"
+            android:layout_height="90dp"
+            android:layout_margin="10dp"
+            android:background="@color/purple_700"
+            android:gravity="center"
+            android:text="Subject"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/signOutBtn"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#6876C3"
-            app:columnCount="2"
-            app:rowCount="5"
-            tools:ignore="HardcodedText,ContentDescription"
-            tools:layout_editor_absoluteX="1dp"
-            tools:layout_editor_absoluteY="1dp">
+            android:backgroundTint="#ff0000"
+            android:gravity="center"
+            android:text="sign out" />
 
-            <ImageView
-                android:layout_width="150dp"
-                android:layout_height="90dp"
-                android:layout_margin="10dp"
-                android:src="@drawable/ksit_logo" />
-
-            <ImageView
-                android:layout_width="150dp"
-                android:layout_height="90dp"
-                android:layout_margin="10dp"
-                android:src="@drawable/ksit_logo" />
-
-            <ImageView
-                android:layout_width="150dp"
-                android:layout_height="90dp"
-                android:layout_margin="10dp"
-                android:src="@drawable/ksit_logo" />
-
-            <ImageView
-                android:layout_width="150dp"
-                android:layout_height="90dp"
-                android:layout_margin="10dp"
-                android:src="@drawable/ksit_logo" />
-
-            <TextView
-                android:id="@+id/teacherBtn"
-                android:layout_width="150dp"
-                android:layout_height="90dp"
-                android:layout_margin="10dp"
-                android:background="@color/purple_700"
-                android:gravity="center"
-                android:text="Teacher"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="30sp" />
-
-            <TextView
-                android:id="@+id/studentBtn"
-                android:layout_width="150dp"
-                android:layout_height="90dp"
-                android:layout_margin="10dp"
-                android:background="@color/purple_700"
-                android:gravity="center"
-                android:text="Student"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="30sp" />
-
-            <TextView
-                android:id="@+id/marksBtn"
-                android:layout_width="150dp"
-                android:layout_height="90dp"
-                android:layout_margin="10dp"
-                android:background="@color/purple_700"
-                android:gravity="center"
-                android:text="Marks"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="30sp" />
-
-            <TextView
-                android:id="@+id/subjectBtn"
-                android:layout_width="150dp"
-                android:layout_height="90dp"
-                android:layout_margin="10dp"
-                android:background="@color/purple_700"
-                android:gravity="center"
-                android:text="Subject"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="30sp" />
-
-            <Button
-                android:id="@+id/signOutBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="#ff0000"
-                android:gravity="center"
-                android:text="sign out" />
-
-        </androidx.gridlayout.widget.GridLayout>
-    </ScrollView>
+    </androidx.gridlayout.widget.GridLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
