@@ -9,7 +9,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class AdminPage extends AppCompatActivity {
 
@@ -35,7 +34,7 @@ public class AdminPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_page);
 
-        Toast.makeText(this, "" + MainActivity.USER_TYPE, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "" + LoginActivity.USER_TYPE, Toast.LENGTH_SHORT).show();
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -46,15 +45,15 @@ public class AdminPage extends AppCompatActivity {
         subjectBtn = findViewById(R.id.subjectBtn);
         marksBtn = findViewById(R.id.marksBtn);
 
-        studentBtn.setOnClickListener(view -> activityManager("student", ViewCollectionActivity.class));
-        teacherBtn.setOnClickListener(view -> activityManager("teacher", ViewCollectionActivity.class));
-        subjectBtn.setOnClickListener(view -> activityManager("subject", ViewCollectionActivity.class));
-        marksBtn.setOnClickListener(view -> activityManager("marks", ViewCollectionActivity.class));
+        studentBtn.setOnClickListener(view -> activityManager("student", ViewCollection.class));
+        teacherBtn.setOnClickListener(view -> activityManager("teacher", ViewCollection.class));
+        subjectBtn.setOnClickListener(view -> activityManager("subject", ViewCollection.class));
+        marksBtn.setOnClickListener(view -> activityManager("marks", ViewCollection.class));
 
         signOutBtn.setOnClickListener(view -> {
             Intent i = new Intent(AdminPage.this, MainActivity.class);
             mAuth.signOut();
-            MainActivity.USER_TYPE = "";
+            LoginActivity.USER_TYPE = "";
             startActivity(i);
         });
     }
