@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class ViewCollectionActivity extends AppCompatActivity {
+public class ViewCollection extends AppCompatActivity {
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -55,7 +55,7 @@ public class ViewCollectionActivity extends AppCompatActivity {
             }
             Log.d("List View", "onEvent: " + list.toString());
 
-            ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(ViewCollectionActivity.this,
+            ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(ViewCollection.this,
                     R.layout.view_list_item,
                     list);
             listView.setAdapter(arrayAdapter);

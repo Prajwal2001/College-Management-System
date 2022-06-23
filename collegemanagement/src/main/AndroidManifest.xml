@@ -16,7 +16,7 @@
             android:name=".AddCollection"
             android:exported="false" />
         <activity
-            android:name=".ViewCollectionActivity"
+            android:name=".ViewCollection"
             android:exported="false" />
         <activity
             android:name=".AdminPage"
