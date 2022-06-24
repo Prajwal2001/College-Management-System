@@ -24,7 +24,6 @@ public class ViewCollection extends AppCompatActivity {
 
     ListView listView;
     ArrayList<ViewListItem> viewList = new ArrayList<>();
-    List<String> list = new ArrayList<>();
 
 
     @Override
@@ -46,7 +45,7 @@ public class ViewCollection extends AppCompatActivity {
         db.collection(collection).addSnapshotListener((documentSnapshots, e) -> {
             if (e != null)
                 Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
-            list.clear();
+            viewList.clear();
             if (documentSnapshots != null) {
                 for (DocumentSnapshot doc : documentSnapshots) {
                     Map<String, Object> data = doc.getData();
@@ -57,15 +56,11 @@ public class ViewCollection extends AppCompatActivity {
                     }
                     ViewListItem listItem = new ViewListItem(item, doc.getId());
                     viewList.add(listItem);
-                    list.add(item);
                 }
             }
-            Log.d("List View", "onEvent: " + list.toString());
+            Log.d("List View", "onEvent: " + viewList.toString());
 
             ViewListItemAdapter viewListItemAdapter = new ViewListItemAdapter(ViewCollection.this, viewList, collection);
-            ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(ViewCollection.this,
-                    R.layout.view_list_item,
-                    list);
             listView.setAdapter(viewListItemAdapter);
         });
     }
