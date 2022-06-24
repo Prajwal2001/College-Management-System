@@ -48,16 +48,25 @@ public class LoginActivity extends AppCompatActivity {
 
     private void updateSignIn(FirebaseUser user) {
         if (user != null)
-            db.collection("user")
+            db.collection("admin")
                     .document(user.getUid())
                     .get()
                     .addOnCompleteListener(t -> {
                         if (t.getResult().exists()) {
-                            USER_TYPE = t.getResult().getData().get("userType").toString();
+                            USER_TYPE = "admin";
                             Intent i = new Intent(LoginActivity.this, AdminPage.class);
-                            //i.putExtra("userType", t.getResult().getData().get("userType").toString());
                             startActivity(i);
                         }
+                        else
+                            db.collection("teacher").document(user.getUid()).get().addOnCompleteListener(task -> {
+                            if(task.getResult().exists()) {
+                                USER_TYPE = "teacher";
+                                Intent i = new Intent(LoginActivity.this, TeacherPage.class);
+                                startActivity(i);
+                            }
+                            else
+                                Toast.makeText(this, " User Doesn't Exist ", Toast.LENGTH_SHORT).show();
+                        });
                     });
     }
 
@@ -99,12 +108,7 @@ public class LoginActivity extends AppCompatActivity {
                         .addOnCompleteListener(this, task -> {
                             if (task.isSuccessful()) {
                                 FirebaseUser user = mAuth.getCurrentUser();
-                                db.collection("user").document(user.getUid()).get().addOnCompleteListener(t -> {
-                                    if (t.getResult().exists())
-                                        updateSignIn(user);
-                                    else
-                                        Toast.makeText(this, " User Doesn't Exist ", Toast.LENGTH_SHORT).show();
-                                });
+                                updateSignIn(user);
                             } else {
                                 circularPB.setVisibility(View.INVISIBLE);
                                 Toast.makeText(this, "Login failed", Toast.LENGTH_SHORT).show();
