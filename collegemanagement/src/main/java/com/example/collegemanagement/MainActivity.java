@@ -24,9 +24,12 @@ import java.util.regex.Pattern;
 public class MainActivity extends AppCompatActivity {
 
     private static int SPLASH_SCREEN_TIME_OUT=1000;
+    FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        mAuth = FirebaseAuth.getInstance();
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -36,19 +39,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         //this will bind your MainActivity.class file with activity_main.
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Intent i=new Intent(MainActivity.this,
-                        LoginActivity.class);
-                //Intent is used to switch from one activity to another.
+        new Handler().postDelayed(() -> {
+            FirebaseUser user = mAuth.getCurrentUser();
+            Intent i=new Intent(MainActivity.this,
+                    LoginActivity.class);
+            //Intent is used to switch from one activity to another.
 
-                startActivity(i);
-                //invoke the SecondActivity.
+            startActivity(i);
+            //invoke the SecondActivity.
 
-                finish();
-                //the current activity will get finished.
-            }
+            finish();
+            //the current activity will get finished.
         }, SPLASH_SCREEN_TIME_OUT);
     }
 }
