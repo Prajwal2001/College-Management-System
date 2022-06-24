@@ -61,7 +61,7 @@ public class LoginActivity extends AppCompatActivity {
                             db.collection("teacher").document(user.getUid()).get().addOnCompleteListener(task -> {
                             if(task.getResult().exists()) {
                                 USER_TYPE = "teacher";
-                                Intent i = new Intent(LoginActivity.this, TeacherPage.class);
+                                Intent i = new Intent(LoginActivity.this, AdminPage.class);
                                 startActivity(i);
                             }
                             else
