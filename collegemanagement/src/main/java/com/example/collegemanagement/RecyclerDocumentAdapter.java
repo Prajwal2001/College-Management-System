@@ -14,9 +14,9 @@ import java.util.ArrayList;
 public class RecyclerDocumentAdapter extends RecyclerView.Adapter<RecyclerDocumentAdapter.ViewHolder> {
 
     Context context;
-    ArrayList<String> list;
+    ArrayList<Object> list;
 
-    public RecyclerDocumentAdapter(Context context, ArrayList<String> list) {
+    public RecyclerDocumentAdapter(Context context, ArrayList<Object> list) {
         this.list = list;
         this.context = context;
     }
@@ -32,7 +32,7 @@ public class RecyclerDocumentAdapter extends RecyclerView.Adapter<RecyclerDocume
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.textView.setText(list.get(position));
+        holder.textView.setText(list.get(position).toString());
     }
 
     @Override

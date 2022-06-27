@@ -12,6 +12,8 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class AdminPage extends AppCompatActivity {
 
+    public static String USER;
+
     Button signOutBtn;
     TextView studentBtn, teacherBtn, subjectBtn, marksBtn;
     private FirebaseAuth mAuth;

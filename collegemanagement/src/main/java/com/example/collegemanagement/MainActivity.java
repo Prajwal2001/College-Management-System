@@ -19,6 +19,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity {
@@ -41,8 +42,9 @@ public class MainActivity extends AppCompatActivity {
 
         new Handler().postDelayed(() -> {
             FirebaseUser user = mAuth.getCurrentUser();
+            Toast.makeText(this, (LoginActivity.USER_TYPE == null) + "", Toast.LENGTH_SHORT).show();
             Intent i=new Intent(MainActivity.this,
-                    LoginActivity.class);
+                    user == null ? LoginActivity.class : Objects.equals(LoginActivity.USER_TYPE, "admin") ? AdminPage.class : TeacherPage.class);
             //Intent is used to switch from one activity to another.
 
             startActivity(i);
