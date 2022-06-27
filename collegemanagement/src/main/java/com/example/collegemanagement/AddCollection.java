@@ -8,6 +8,7 @@ import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -21,6 +22,9 @@ public class AddCollection extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_collection);
+
+        FirebaseAuth mAuth1 = FirebaseAuth.getInstance();
+        FirebaseAuth mAuth2 = FirebaseAuth.getInstance();
 
         Intent i = getIntent();
         String collection = i.getStringExtra("collection");

@@ -45,10 +45,10 @@ public class AdminPage extends AppCompatActivity {
         subjectBtn = findViewById(R.id.subjectBtn);
         marksBtn = findViewById(R.id.marksBtn);
 
-        studentBtn.setOnClickListener(view -> activityManager("student", ViewCollection.class));
-        teacherBtn.setOnClickListener(view -> activityManager("teacher", ViewCollection.class));
-        subjectBtn.setOnClickListener(view -> activityManager("subject", ViewCollection.class));
-        marksBtn.setOnClickListener(view -> activityManager("marks", ViewCollection.class));
+        studentBtn.setOnClickListener(view -> activityManager("student", ViewDocuments.class));
+        teacherBtn.setOnClickListener(view -> activityManager("teacher", ViewDocuments.class));
+        subjectBtn.setOnClickListener(view -> activityManager("subject", ViewDocuments.class));
+        marksBtn.setOnClickListener(view -> activityManager("marks", ViewDocuments.class));
 
         signOutBtn.setOnClickListener(view -> {
             Intent i = new Intent(AdminPage.this, MainActivity.class);
