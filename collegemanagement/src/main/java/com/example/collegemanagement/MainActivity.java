@@ -24,6 +24,8 @@ import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity {
 
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+
     private static int SPLASH_SCREEN_TIME_OUT=1000;
     FirebaseAuth mAuth;
     @Override
@@ -42,15 +44,43 @@ public class MainActivity extends AppCompatActivity {
 
         new Handler().postDelayed(() -> {
             FirebaseUser user = mAuth.getCurrentUser();
-            Toast.makeText(this, (LoginActivity.USER_TYPE == null) + "", Toast.LENGTH_SHORT).show();
-            Intent i=new Intent(MainActivity.this,
-                    user == null ? LoginActivity.class : Objects.equals(LoginActivity.USER_TYPE, "admin") ? AdminPage.class : TeacherPage.class);
-            //Intent is used to switch from one activity to another.
-
-            startActivity(i);
-            //invoke the SecondActivity.
-
-            finish();
+            if (user != null)
+                db.collection("admin")
+                        .document(user.getUid())
+                        .get()
+                        .addOnCompleteListener(t -> {
+                            if (t.getResult().exists()) {
+                                Intent i = new Intent(MainActivity.this, AdminPage.class);
+                                startActivity(i);
+                                finish();
+                            }
+                            else
+                                db.collection("teacher").document(user.getUid()).get().addOnCompleteListener(task -> {
+                                    if(task.getResult().exists()) {
+                                        Intent i = new Intent(MainActivity.this, TeacherPage.class);
+                                        startActivity(i);
+                                        finish();
+                                    }
+                                    else {
+                                        Intent i = new Intent(MainActivity.this, LoginActivity.class);
+                                        startActivity(i);
+                                        finish();
+                                    }
+                                });
+                        });
+            else {
+                Intent i = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(i);
+                finish();
+            }
+//            Toast.makeText(this, user.getUid() + "", Toast.LENGTH_SHORT).show();
+//            Intent i=new Intent(MainActivity.this,MainActivity.class);
+//            //Intent is used to switch from one activity to another.
+//
+//            startActivity(i);
+//            //invoke the SecondActivity.
+//
+//            finish();
             //the current activity will get finished.
         }, SPLASH_SCREEN_TIME_OUT);
     }
