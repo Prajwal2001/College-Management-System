@@ -53,14 +53,12 @@ public class LoginActivity extends AppCompatActivity {
                     .get()
                     .addOnCompleteListener(t -> {
                         if (t.getResult().exists()) {
-                            USER_TYPE = "admin";
                             Intent i = new Intent(LoginActivity.this, AdminPage.class);
                             startActivity(i);
                         }
                         else
                             db.collection("teacher").document(user.getUid()).get().addOnCompleteListener(task -> {
                             if(task.getResult().exists()) {
-                                USER_TYPE = "teacher";
                                 Intent i = new Intent(LoginActivity.this, TeacherPage.class);
                                 startActivity(i);
                             }
@@ -110,12 +108,10 @@ public class LoginActivity extends AppCompatActivity {
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 updateSignIn(user);
                             } else {
-                                circularPB.setVisibility(View.INVISIBLE);
                                 Toast.makeText(this, "Login failed", Toast.LENGTH_SHORT).show();
                             }
                         });
-            } else if (!emailValidated)
-                Toast.makeText(this, "Invalid Email Id", Toast.LENGTH_SHORT).show();
+            } else if (!emailValidated) Toast.makeText(this, "Invalid Email Id", Toast.LENGTH_SHORT).show();
             else Toast.makeText(this, "Invalid Password", Toast.LENGTH_SHORT).show();
         });
     }
