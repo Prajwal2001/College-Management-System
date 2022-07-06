@@ -11,32 +11,32 @@
         android:theme="@style/Theme.CollegeManagement">
         <activity
             android:configChanges="orientation"
-            android:screenOrientation="portrait"
+            android:screenOrientation="fullSensor"
             android:name=".ViewDocuments"
             android:exported="false" />
         <activity
             android:configChanges="orientation"
-            android:screenOrientation="portrait"
+            android:screenOrientation="fullSensor"
             android:name=".TeacherPage"
             android:exported="false" />
         <activity
             android:configChanges="orientation"
-            android:screenOrientation="portrait"
+            android:screenOrientation="fullSensor"
             android:name=".LoginActivity"
             android:exported="false" />
         <activity
             android:configChanges="orientation"
-            android:screenOrientation="portrait"
+            android:screenOrientation="fullSensor"
             android:name=".AddCollection"
             android:exported="false" />
         <activity
             android:configChanges="orientation"
-            android:screenOrientation="portrait"
+            android:screenOrientation="fullSensor"
             android:name=".AdminPage"
             android:exported="false" />
         <activity
             android:configChanges="orientation"
-            android:screenOrientation="portrait"
+            android:screenOrientation="fullSensor"
             android:name=".MainActivity"
             android:exported="true" >
             <intent-filter>
