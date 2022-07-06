@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/home"
+            android:icon="@drawable/home"
+            android:title="Home" />
+
+        <item
+            android:id="@+id/calender"
+            android:icon="@drawable/calendar"
+            android:title="Calender of Events" />
+
+        <item
+            android:id="@+id/subjects"
+            android:icon="@drawable/subject"
+            android:title="Course Subjects" />
+
+    </group>
+
+    <group android:checkableBehavior="single">
+
+        <item android:title="Authentication">
+
+        <menu>
+
+            <item
+                android:id="@+id/viewprofile"
+                android:icon="@drawable/profile"
+                android:title="View Profile" />
+
+            <item
+                android:id="@+id/updateprofile"
+                android:icon="@drawable/update"
+                android:title="Update Profile" />
+
+            <item
+                android:id="@+id/signOutBtn"
+                android:icon="@drawable/signout"
+                android:title="Sign out" />
+
+        </menu>
+
+        </item>
+
+    </group>
+
+</menu>
