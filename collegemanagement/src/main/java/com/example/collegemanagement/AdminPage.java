@@ -3,8 +3,10 @@ package com.example.collegemanagement;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
@@ -23,7 +25,7 @@ public class AdminPage extends AppCompatActivity {
     Toolbar toolbar;
 
     Button signOutBtn;
-    TextView studentBtn, teacherBtn, subjectBtn, marksBtn;
+    CardView studentBtn, teacherBtn, subjectBtn, marksBtn;
     private FirebaseAuth mAuth;
 
     @Override
@@ -44,26 +46,26 @@ public class AdminPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_page);
 
-        Toast.makeText(this, "" + LoginActivity.USER_TYPE, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "" + LoginActivity.USER_TYPE, Toast.LENGTH_SHORT).show();
 
         mAuth = FirebaseAuth.getInstance();
 
-        drawerLayout = findViewById(R.id.drawer_layout);
-        navigationView = findViewById(R.id.navigation_view);
-        toolbar = findViewById(R.id.toolbar);
+//        drawerLayout = findViewById(R.id.drawer_layout);
+//        navigationView = findViewById(R.id.navigation_view);
+//        toolbar = findViewById(R.id.toolbar);
 
-        setSupportActionBar(toolbar);
-
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_open, R.string.navigation_close);
-        drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
+//        setSupportActionBar(toolbar);
+//
+//        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_open, R.string.navigation_close);
+//        drawerLayout.addDrawerListener(toggle);
+//        toggle.syncState();
 
 
         signOutBtn = findViewById(R.id.signOutBtn);
 
         studentBtn = findViewById(R.id.studentBtn);
         teacherBtn = findViewById(R.id.teacherBtn);
-        subjectBtn = findViewById(R.id.subjectBtn);
+        subjectBtn = findViewById(R.id.subjectsBtn);
         marksBtn = findViewById(R.id.marksBtn);
 
         studentBtn.setOnClickListener(view -> activityManager("student", ViewDocuments.class));
@@ -72,10 +74,17 @@ public class AdminPage extends AppCompatActivity {
         marksBtn.setOnClickListener(view -> activityManager("marks", ViewDocuments.class));
 
         signOutBtn.setOnClickListener(view -> {
-            Intent i = new Intent(AdminPage.this, MainActivity.class);
-            mAuth.signOut();
-            LoginActivity.USER_TYPE = "";
-            startActivity(i);
+            new AlertDialog.Builder(AdminPage.this)
+                    .setMessage("Are you sure you want to log out?")
+                    .setPositiveButton("Yes", (dialog, which) -> {
+                        mAuth.signOut();
+                        Intent i = new Intent(AdminPage.this, MainActivity.class);
+                        LoginActivity.USER_TYPE = "";
+                        startActivity(i);
+                    })
+                    .setNegativeButton("No", (dialog, which) -> {})
+                    .create()
+                    .show();
         });
     }
 }
