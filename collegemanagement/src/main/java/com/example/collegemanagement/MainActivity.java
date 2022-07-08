@@ -1,31 +1,19 @@
 package com.example.collegemanagement;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
-import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ProgressBar;
-import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
 import com.google.firebase.firestore.FirebaseFirestore;
-
-
-import java.util.Objects;
-import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static int SPLASH_SCREEN_TIME_OUT=1000;
+    private static final int SPLASH_SCREEN_TIME_OUT=1000;
     FirebaseAuth mAuth;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     @Override

@@ -1,42 +1,30 @@
 package com.example.collegemanagement;
 
+import android.app.AlertDialog;
+import android.content.Intent;
+import android.os.Bundle;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 
+import java.util.AbstractMap;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-
-import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
 
 public class ViewDocuments extends AppCompatActivity {
 
     RecyclerDocumentAdapter adapter;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    ArrayList<Object> list = new ArrayList<>();
+    ArrayList<Map.Entry<String, String>> list = new ArrayList<>();
+    String collection;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +32,7 @@ public class ViewDocuments extends AppCompatActivity {
         setContentView(R.layout.activity_view_documents);
 
         Intent intent = getIntent();
-        String collection = intent.getStringExtra("collection");
+        collection = intent.getStringExtra("collection");
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -58,9 +46,10 @@ public class ViewDocuments extends AppCompatActivity {
                         for (DocumentSnapshot doc: documentSnapshots) {
                             Map<String, Object> data = doc.getData();
                             String item = "";
-                            for(Map.Entry<String, Object> entry: data.entrySet())
+                            for(Map.Entry<String, Object> entry: Objects.requireNonNull(data).entrySet())
                                 item = item.concat(entry.getKey() + ": " + entry.getValue() + "\n");
-                            list.add(item);
+
+                            list.add(new AbstractMap.SimpleEntry<>(doc.getId(), item));
                         }
                     }
                     adapter = new RecyclerDocumentAdapter(this, list);
@@ -78,32 +67,20 @@ public class ViewDocuments extends AppCompatActivity {
 
         @Override
         public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-            ConstraintLayout constraintLayout = findViewById(R.id.activity_view_documents);
             switch (direction) {
                 case ItemTouchHelper.LEFT:
                     new AlertDialog.Builder(viewHolder.itemView.getContext())
                             .setMessage("Are you sure?")
                             .setPositiveButton("Yes", (dialog, which) -> {
                                 int pos = viewHolder.getAdapterPosition();
-                                list.remove(pos);
+                                Toast.makeText(ViewDocuments.this, "Deleted:"+ pos, Toast.LENGTH_SHORT).show();
+                                db.collection(collection).document(adapter.getAdapterId(pos)).delete().addOnSuccessListener(aVoid -> Toast.makeText(getApplicationContext().getApplicationContext(), " Data deleted successfully ", Toast.LENGTH_SHORT).show())
+                                        .addOnFailureListener(e -> Toast.makeText(getApplicationContext().getApplicationContext(), " Error: "+e.getMessage(), Toast.LENGTH_LONG).show());
                                 adapter.notifyItemRemoved(pos);
                             })
-                            .setNegativeButton("No", (dialog, which) -> {
-                                adapter.notifyItemChanged(viewHolder.getAdapterPosition());
-                            })
+                            .setNegativeButton("No", (dialog, which) -> adapter.notifyItemChanged(viewHolder.getAdapterPosition()))
                             .create()
                             .show();
-//                    Snackbar snackbar = Snackbar
-//                            .make(constraintLayout, "Removed", Snackbar.LENGTH_LONG);
-//                    snackbar.setAction("UNDO", new View.OnClickListener() {
-//
-//                        @Override
-//                        public void onClick(View v) {
-//                            Toast.makeText(ViewDocuments.this, "UNDO", Toast.LENGTH_SHORT).show();
-//                        }
-//                    });
-//                    snackbar.setActionTextColor(Color.YELLOW);
-//                    snackbar.show();
                     break;
 
                 case ItemTouchHelper.RIGHT:
