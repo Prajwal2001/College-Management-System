@@ -10,13 +10,14 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class RecyclerDocumentAdapter extends RecyclerView.Adapter<RecyclerDocumentAdapter.ViewHolder> {
 
     Context context;
-    ArrayList<Object> list;
+    ArrayList<Map.Entry<String, String>> list;
 
-    public RecyclerDocumentAdapter(Context context, ArrayList<Object> list) {
+    public RecyclerDocumentAdapter(Context context, ArrayList<Map.Entry<String, String>> list) {
         this.list = list;
         this.context = context;
     }
@@ -32,12 +33,17 @@ public class RecyclerDocumentAdapter extends RecyclerView.Adapter<RecyclerDocume
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.textView.setText(list.get(position).toString());
+        holder.textView.setText(list.get(position).getValue());
     }
 
     @Override
     public int getItemCount() {
         return list.size();
+    }
+
+
+    public String getAdapterId(int position){
+        return list.get(position).getKey();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -47,6 +53,7 @@ public class RecyclerDocumentAdapter extends RecyclerView.Adapter<RecyclerDocume
 
             textView = itemView.findViewById(R.id.list_item);
         }
+
     }
 
 }

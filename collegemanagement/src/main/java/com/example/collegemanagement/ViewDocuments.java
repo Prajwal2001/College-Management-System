@@ -1,42 +1,30 @@
 package com.example.collegemanagement;
 
+import android.app.AlertDialog;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 
+import java.util.AbstractMap;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Objects;
-
-import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
 
 public class ViewDocuments extends AppCompatActivity {
 
     RecyclerDocumentAdapter adapter;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    ArrayList<Object> list = new ArrayList<>();
+    ArrayList<Map.Entry<String, String>> list = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +48,8 @@ public class ViewDocuments extends AppCompatActivity {
                             String item = "";
                             for(Map.Entry<String, Object> entry: data.entrySet())
                                 item = item.concat(entry.getKey() + ": " + entry.getValue() + "\n");
-                            list.add(item);
+
+                            list.add(new AbstractMap.SimpleEntry<>(doc.getId(), item));
                         }
                     }
                     adapter = new RecyclerDocumentAdapter(this, list);
@@ -85,7 +74,9 @@ public class ViewDocuments extends AppCompatActivity {
                             .setMessage("Are you sure?")
                             .setPositiveButton("Yes", (dialog, which) -> {
                                 int pos = viewHolder.getAdapterPosition();
+                                Toast.makeText(ViewDocuments.this, adapter.getAdapterId(pos), Toast.LENGTH_SHORT).show();
                                 list.remove(pos);
+                                Log.d("Deletion", "id: "+ adapter.getAdapterId(pos) + " ");
                                 adapter.notifyItemRemoved(pos);
                             })
                             .setNegativeButton("No", (dialog, which) -> {
