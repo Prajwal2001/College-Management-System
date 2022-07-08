@@ -27,8 +27,7 @@ public class RecyclerDocumentAdapter extends RecyclerView.Adapter<RecyclerDocume
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         View v = LayoutInflater.from(this.context).inflate(R.layout.list_item, parent, false);
-        ViewHolder viewHolder = new ViewHolder(v);
-        return viewHolder;
+        return new ViewHolder(v);
     }
 
     @Override
@@ -46,11 +45,10 @@ public class RecyclerDocumentAdapter extends RecyclerView.Adapter<RecyclerDocume
         return list.get(position).getKey();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView textView;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-
             textView = itemView.findViewById(R.id.list_item);
         }
 
