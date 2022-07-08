@@ -84,7 +84,11 @@ public class ViewDocuments extends AppCompatActivity {
                     break;
 
                 case ItemTouchHelper.RIGHT:
-                    Toast.makeText(ViewDocuments.this, "swiped right", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(ViewDocuments.this, collection + ": "+ adapter.getAdapterId(viewHolder.getAdapterPosition()), Toast.LENGTH_SHORT).show();
+                    Intent update = new Intent(getApplicationContext(), UpdateDocument.class);
+                    update.putExtra("collection", collection);
+                    update.putExtra("docId", adapter.getAdapterId(viewHolder.getAdapterPosition()));
+                    startActivity(update);
                     break;
             }
         }
