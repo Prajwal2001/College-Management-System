@@ -3,6 +3,8 @@ package com.example.collegemanagement;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +24,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Map;
+
 
 class UpdateDocAdapter extends ArrayAdapter<Map.Entry<String, String>> {
 
@@ -46,8 +49,23 @@ class UpdateDocAdapter extends ArrayAdapter<Map.Entry<String, String>> {
             EditText fieldEditText = (EditText) convertView.findViewById(R.id.update_list_edit);
             fieldTextView.setText(entry.getKey());
             fieldEditText.setText(entry.getValue());
-
+            fieldEditText.addTextChangedListener(new GenericTextWatcher(position));
         return convertView;
+    }
+
+    private class GenericTextWatcher implements TextWatcher{
+        private int position;
+        private GenericTextWatcher(int position) {
+            super();
+            this.position = position;
+        }
+        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+        @Override
+        public void afterTextChanged(Editable editable) {
+            Toast.makeText(getContext(), editable.toString(), Toast.LENGTH_SHORT).show();
+            UpdateDocAdapter.this.getItem(position).setValue(editable.toString());
+        }
     }
 }
 
@@ -87,7 +105,7 @@ public class UpdateDocument extends AppCompatActivity {
         Button updateBtn= findViewById(R.id.updateBtn);
         updateBtn.setOnClickListener(v -> {
             for (int i = 0; i < updateListView.getAdapter().getCount(); i++) {
-                Toast.makeText(getApplicationContext(), updateListView.getAdapter().getItem(i).toString(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getApplicationContext(), updateListView.getAdapter().getItem(i).toString(), Toast.LENGTH_SHORT).show();
             }
 
         });
