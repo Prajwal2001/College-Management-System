@@ -1,79 +1,25 @@
 package com.example.collegemanagement;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
+import android.text.InputType;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.AbstractMap;
-import java.util.ArrayList;
 import java.util.Map;
-
-
-class UpdateDocAdapter extends ArrayAdapter<Map.Entry<String, String>> {
-
-    public UpdateDocAdapter(Activity context, ArrayList<Map.Entry<String, String>> ViewListItems) {
-        super(context, 0, ViewListItems);
-    }
-
-    @Override
-    public int getCount() {
-        return super.getCount();
-    }
-
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        Map.Entry<String, String> entry = (Map.Entry<String, String>) getItem(position);
-
-        // Check if an existing view is being reused, otherwise inflate the view
-        if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.update_list_item, parent, false);
-        }
-            TextView fieldTextView = (TextView) convertView.findViewById(R.id.update_list_text);
-            EditText fieldEditText = (EditText) convertView.findViewById(R.id.update_list_edit);
-            fieldTextView.setText(entry.getKey());
-            fieldEditText.setText(entry.getValue());
-            fieldEditText.addTextChangedListener(new GenericTextWatcher(position));
-        return convertView;
-    }
-
-    private class GenericTextWatcher implements TextWatcher{
-        private int position;
-        private GenericTextWatcher(int position) {
-            super();
-            this.position = position;
-        }
-        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
-        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
-        @Override
-        public void afterTextChanged(Editable editable) {
-            Toast.makeText(getContext(), editable.toString(), Toast.LENGTH_SHORT).show();
-            UpdateDocAdapter.this.getItem(position).setValue(editable.toString());
-        }
-    }
-}
 
 public class UpdateDocument extends AppCompatActivity {
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    ListView updateListView;
-    ArrayList<Map.Entry<String, String>> updateViewList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,20 +28,27 @@ public class UpdateDocument extends AppCompatActivity {
         Intent update = getIntent();
         String collection = update.getStringExtra("collection");
         String docId = update.getStringExtra("docId");
-
-        updateListView = (ListView) findViewById(R.id.updateList);
-        //updateViewList.clear();
-
+        LinearLayout updateDocList = findViewById(R.id.updateDocList);
         db.collection(collection).document(docId).get().addOnCompleteListener(task -> {
             if (task.isSuccessful()){
                 DocumentSnapshot doc = task.getResult();
                 Map<String, Object> data = doc.getData();
-                assert data != null;
-                for (Map.Entry<String, Object> entry: data.entrySet()) {
-                    updateViewList.add(new AbstractMap.SimpleEntry<>(entry.getKey(), entry.getValue().toString()));
+                if (data != null) {
+                    for (Map.Entry<String, Object> entry: data.entrySet()) {
+                        TextView textView = new TextView(this);
+                        textView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+                        textView.setTextSize(20f);
+                        textView.setText(entry.getKey());
+                        updateDocList.addView(textView);
+
+                        EditText editText = new EditText(this);
+                        editText.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+                        editText.setTextSize(20f);
+                        editText.setInputType(InputType.TYPE_CLASS_TEXT);
+                        editText.setText(entry.getValue().toString());
+                        updateDocList.addView(editText);
+                    }
                 }
-                UpdateDocAdapter updateListAdapter = new UpdateDocAdapter(UpdateDocument.this, updateViewList);
-                updateListView.setAdapter(updateListAdapter);
             }
             else {
                 Log.d("GetDoc", "Get Failed with ", task.getException());
@@ -104,10 +57,6 @@ public class UpdateDocument extends AppCompatActivity {
 
         Button updateBtn= findViewById(R.id.updateBtn);
         updateBtn.setOnClickListener(v -> {
-            for (int i = 0; i < updateListView.getAdapter().getCount(); i++) {
-//                Toast.makeText(getApplicationContext(), updateListView.getAdapter().getItem(i).toString(), Toast.LENGTH_SHORT).show();
-            }
-
         });
     }
 }
