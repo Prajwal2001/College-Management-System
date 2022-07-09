@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -23,10 +22,14 @@ import java.util.ArrayList;
 import java.util.Map;
 
 class UpdateDocAdapter extends ArrayAdapter<Map.Entry<String, String>> {
-    private static final String LOG_TAG = UpdateDocAdapter.class.getSimpleName();
 
     public UpdateDocAdapter(Activity context, ArrayList<Map.Entry<String, String>> ViewListItems) {
         super(context, 0, ViewListItems);
+    }
+
+    @Override
+    public int getCount() {
+        return super.getCount();
     }
 
     @Override
@@ -65,8 +68,8 @@ public class UpdateDocument extends AppCompatActivity {
                 Map<String, Object> data = doc.getData();
                 assert data != null;
                 for (Map.Entry<String, Object> entry: data.entrySet()) {
-                    updateViewList.add(new AbstractMap.SimpleEntry<String, String>(entry.getKey(), entry.getValue().toString()));
-                    Log.d("UpdtVal", "getView: "+ entry.getKey() + " " + entry.getValue());
+                    updateViewList.add(new AbstractMap.SimpleEntry<>(entry.getKey(), entry.getValue().toString()));
+                    Log.d("UpdateVal", "getView: "+ entry.getKey() + " " + entry.getValue());
                 }
                 UpdateDocAdapter updateListAdapter = new UpdateDocAdapter(UpdateDocument.this, updateViewList);
                 updateListView.setAdapter(updateListAdapter);

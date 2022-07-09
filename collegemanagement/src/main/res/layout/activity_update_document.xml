@@ -19,5 +19,5 @@
         android:backgroundTint="@color/purple_500"
         android:textColor="@color/white"
         android:textSize="20sp"
-        android:text="Update"/>
+        android:text="@string/update"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

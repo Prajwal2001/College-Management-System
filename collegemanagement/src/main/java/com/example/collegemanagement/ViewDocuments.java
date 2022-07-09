@@ -3,7 +3,6 @@ package com.example.collegemanagement;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -40,13 +39,10 @@ public class ViewDocuments extends AppCompatActivity {
         addBtn = findViewById(R.id.button);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        addBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(), AddCollection.class);
-                i.putExtra("collection",collection);
-                startActivity(i);
-            }
+        addBtn.setOnClickListener(view -> {
+            Intent i = new Intent(getApplicationContext(), AddCollection.class);
+            i.putExtra("collection",collection);
+            startActivity(i);
         });
         db.collection(collection)
                 .addSnapshotListener((documentSnapshots, e) -> {
