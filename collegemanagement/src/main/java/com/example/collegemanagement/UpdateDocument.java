@@ -34,13 +34,20 @@ class UpdateDocAdapter extends ArrayAdapter<Map.Entry<String, String>> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        Map.Entry<String, String> entry = getItem(position);
+        Map.Entry<String, String> entry = (Map.Entry<String, String>) getItem(position);
 
-        TextView fieldTextView = (TextView) convertView.findViewById(R.id.update_list_text);
-        EditText fieldEditText = (EditText) convertView.findViewById(R.id.update_list_edit);
-        Toast.makeText(getContext(), entry.toString(), Toast.LENGTH_SHORT).show();
-        fieldTextView.setText(entry.getKey());
-        fieldEditText.setText(entry.getValue());
+        try {
+            TextView fieldTextView = (TextView) convertView.findViewById(R.id.update_list_text);
+            EditText fieldEditText = (EditText) convertView.findViewById(R.id.update_list_edit);
+
+
+            fieldTextView.setText(entry.getKey());
+            fieldEditText.setText(entry.getValue());
+        } catch (Exception e) {
+            Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+            e.printStackTrace();
+        }
+
         return convertView;
     }
 }
@@ -69,7 +76,6 @@ public class UpdateDocument extends AppCompatActivity {
                 assert data != null;
                 for (Map.Entry<String, Object> entry: data.entrySet()) {
                     updateViewList.add(new AbstractMap.SimpleEntry<>(entry.getKey(), entry.getValue().toString()));
-                    Log.d("UpdateVal", "getView: "+ entry.getKey() + " " + entry.getValue());
                 }
                 UpdateDocAdapter updateListAdapter = new UpdateDocAdapter(UpdateDocument.this, updateViewList);
                 updateListView.setAdapter(updateListAdapter);
