@@ -90,8 +90,7 @@ public class LoginActivity extends AppCompatActivity {
                             for(Map.Entry<String, Object> entry: Objects.requireNonNull(data).entrySet()) {
                                 item = item.concat(entry.getKey() + ": " + entry.getValue() + "\n");
                                 if(item.contains("email: " + toString)){
-                                    String docc = doc.getId();
-                                    userRegister(toString, toString1, docc);
+                                    userRegister(toString, toString1, doc.getId());
                                 }
                                 }
                             }
@@ -104,6 +103,7 @@ public class LoginActivity extends AppCompatActivity {
                 .addOnCompleteListener(task -> {
                     if(task.isSuccessful()){
                         FirebaseUser user = mAuth.getCurrentUser();
+                        assert user != null;
                         String uid = user.getUid();
                         db.collection("teacher")
                                 .document(docId)

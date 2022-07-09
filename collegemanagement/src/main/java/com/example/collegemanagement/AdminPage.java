@@ -1,17 +1,14 @@
 package com.example.collegemanagement;
 
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.cardview.widget.CardView;
-import androidx.drawerlayout.widget.DrawerLayout;
-
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -73,18 +70,16 @@ public class AdminPage extends AppCompatActivity {
         subjectBtn.setOnClickListener(view -> activityManager("subject", ViewDocuments.class));
         marksBtn.setOnClickListener(view -> activityManager("marks", ViewDocuments.class));
 
-        signOutBtn.setOnClickListener(view -> {
-            new AlertDialog.Builder(AdminPage.this)
-                    .setMessage("Are you sure you want to log out?")
-                    .setPositiveButton("Yes", (dialog, which) -> {
-                        mAuth.signOut();
-                        Intent i = new Intent(AdminPage.this, MainActivity.class);
-                        LoginActivity.USER_TYPE = "";
-                        startActivity(i);
-                    })
-                    .setNegativeButton("No", (dialog, which) -> {})
-                    .create()
-                    .show();
-        });
+        signOutBtn.setOnClickListener(view -> new AlertDialog.Builder(AdminPage.this)
+                .setMessage("Are you sure you want to log out?")
+                .setPositiveButton("Yes", (dialog, which) -> {
+                    mAuth.signOut();
+                    Intent i = new Intent(AdminPage.this, MainActivity.class);
+                    LoginActivity.USER_TYPE = "";
+                    startActivity(i);
+                })
+                .setNegativeButton("No", (dialog, which) -> {})
+                .create()
+                .show());
     }
 }
