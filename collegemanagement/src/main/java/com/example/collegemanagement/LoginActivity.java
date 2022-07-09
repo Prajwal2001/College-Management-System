@@ -1,5 +1,6 @@
 package com.example.collegemanagement;
 
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -13,8 +14,12 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.AbstractMap;
+import java.util.Map;
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 public class LoginActivity extends AppCompatActivity {
@@ -62,10 +67,41 @@ public class LoginActivity extends AppCompatActivity {
                                 Intent i = new Intent(LoginActivity.this, TeacherPage.class);
                                 startActivity(i);
                             }
-                            else
+                            else {
                                 Toast.makeText(this, " User Doesn't Exist ", Toast.LENGTH_SHORT).show();
+                            }
                         });
                     });
+    }
+
+    private void checkForUser(String toString, String toString1) {
+        db.collection("teacher")
+                .addSnapshotListener((documentSnapshots, e) -> {
+                    if (documentSnapshots != null) {
+                        for (DocumentSnapshot doc: documentSnapshots) {
+                            Map<String, Object> data = doc.getData();
+                            String item = "";
+                            for(Map.Entry<String, Object> entry: Objects.requireNonNull(data).entrySet()) {
+                                item = item.concat(entry.getKey() + ": " + entry.getValue() + "\n");
+                                if(item.contains("email: " + toString)){
+                                    userRegister(toString, toString1);
+                                }
+                                }
+                            }
+                        }
+                });
+
+}
+    private void userRegister(String toString, String toString1) {
+        mAuth.createUserWithEmailAndPassword(toString, toString1)
+                .addOnCompleteListener(task -> {
+                    if(task.isSuccessful()){
+                        FirebaseUser user = mAuth.getCurrentUser();
+                        String uid = user.getUid();
+                        Intent i = new Intent(LoginActivity.this, TeacherPage.class);
+                        startActivity(i);
+                    }
+                });
     }
 
     private boolean validation(String string, String regEx) {
@@ -95,6 +131,7 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.makeText(this, "Enter a valid Email_id", Toast.LENGTH_SHORT).show();
         });
 
+
         login.setOnClickListener(view -> {
 
             boolean emailValidated = validation(inputEmail.getText().toString(), emailRegEx);
@@ -108,6 +145,7 @@ public class LoginActivity extends AppCompatActivity {
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 updateSignIn(user);
                             } else {
+                                checkForUser(inputEmail.getText().toString(), inputPass.getText().toString());
                                 Toast.makeText(this, "Login failed", Toast.LENGTH_SHORT).show();
                             }
                         });
