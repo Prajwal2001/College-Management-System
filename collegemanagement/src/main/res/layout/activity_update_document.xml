@@ -12,4 +12,13 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         />
+    <Button
+        android:id="@+id/updateBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/updateList"
+        android:backgroundTint="@color/purple_500"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:text="@string/update"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

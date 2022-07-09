@@ -8,4 +8,5 @@
     <string name="forgot_pwd">Forgot Password</string>
     <string name="navigation_open">Open Navigation drawer</string>
     <string name="navigation_close">Close Navigation drawer</string>
+    <string name="update">Update</string>
 </resources>
