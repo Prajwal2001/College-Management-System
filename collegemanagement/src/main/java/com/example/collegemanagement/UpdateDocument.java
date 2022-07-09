@@ -9,12 +9,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.AbstractMap;
+import java.util.LinkedList;
 import java.util.Map;
 
 public class UpdateDocument extends AppCompatActivity {
@@ -29,6 +32,8 @@ public class UpdateDocument extends AppCompatActivity {
         String collection = update.getStringExtra("collection");
         String docId = update.getStringExtra("docId");
         LinearLayout updateDocList = findViewById(R.id.updateDocList);
+        LinkedList<Map.Entry <String, EditText>> editTexts = new LinkedList<>();
+
         db.collection(collection).document(docId).get().addOnCompleteListener(task -> {
             if (task.isSuccessful()){
                 DocumentSnapshot doc = task.getResult();
@@ -46,6 +51,7 @@ public class UpdateDocument extends AppCompatActivity {
                         editText.setTextSize(20f);
                         editText.setInputType(InputType.TYPE_CLASS_TEXT);
                         editText.setText(entry.getValue().toString());
+                        editTexts.add(new AbstractMap.SimpleEntry<>(entry.getKey(), editText));
                         updateDocList.addView(editText);
                     }
                 }
@@ -57,6 +63,10 @@ public class UpdateDocument extends AppCompatActivity {
 
         Button updateBtn= findViewById(R.id.updateBtn);
         updateBtn.setOnClickListener(v -> {
+            for (Map.Entry<String, EditText> entry : editTexts)
+                db.collection(collection).document(docId).update(entry.getKey(), ((EditText)entry.getValue()).getEditableText().toString());
+            Toast.makeText(UpdateDocument.this, "Updated Successfully", Toast.LENGTH_SHORT).show();
+            finish();
         });
     }
 }
