@@ -26,8 +26,8 @@ public class AddCollection extends AppCompatActivity {
 
     private EditText dob;
     Button submitBtn;
-    EditText firstName, lastName, dateOfBirth, address, salary, pword, mail;
-    String fName, lName, dOb, add, sal, email, pwd;
+    EditText firstName, lastName, dateOfBirth, address, salary, mail;
+    String fName, lName, dOb, add, sal, email;
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -81,8 +81,6 @@ public class AddCollection extends AppCompatActivity {
                 sal = salary.getText().toString();
                 mail = findViewById(R.id.mail);
                 email = mail.getText().toString();
-                pword = findViewById(R.id.pwd);
-                pwd = pword.getText().toString();
 
                 Map<String, Object> teacher = new HashMap<>();
                 teacher.put("address", add);
@@ -91,7 +89,6 @@ public class AddCollection extends AppCompatActivity {
                 teacher.put("lname", lName);
                 teacher.put("salary", sal);
                 teacher.put("email", email);
-                teacher.put("password", pwd);
                 teacher.put("uid","");
 
 
