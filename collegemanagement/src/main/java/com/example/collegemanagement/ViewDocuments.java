@@ -3,6 +3,8 @@ package com.example.collegemanagement;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -25,6 +27,7 @@ public class ViewDocuments extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     ArrayList<Map.Entry<String, String>> list = new ArrayList<>();
     String collection;
+    Button addBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,9 +37,17 @@ public class ViewDocuments extends AppCompatActivity {
         Intent intent = getIntent();
         collection = intent.getStringExtra("collection");
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
-
+        addBtn = findViewById(R.id.button);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        addBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(), AddCollection.class);
+                i.putExtra("collection",collection);
+                startActivity(i);
+            }
+        });
         db.collection(collection)
                 .addSnapshotListener((documentSnapshots, e) -> {
                     if (e != null)
