@@ -25,15 +25,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:text="Admin Dashboard"
+                android:text="@string/admin_dashboard"
                 android:textColor="#ffffff"
-                android:textSize="25sp" />
+                android:textSize="25sp"
+                tools:ignore="RelativeOverlap" />
 
             <ImageView
                 android:layout_width="92dp"
                 android:layout_height="92dp"
                 android:layout_alignParentEnd="true"
-                android:src="@drawable/ksit_logo_edited" />
+                android:src="@drawable/ksit_logo_edited"
+                android:contentDescription="@string/ksit_logo" />
 
         </RelativeLayout>
 
@@ -68,7 +70,8 @@
                         android:id="@+id/student"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
-                        android:src="@drawable/students" />
+                        android:src="@drawable/students"
+                        android:contentDescription="@string/logo" />
 
                     <TextView
                         app:layout_constraintTop_toBottomOf="@id/student"
@@ -77,7 +80,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Students"
+                        android:text="@string/students"
                         android:textStyle="bold|italic"
                         android:textSize="18sp" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -106,7 +109,8 @@
                         android:id="@+id/teacher"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
-                        android:src="@drawable/teacher" />
+                        android:src="@drawable/teacher"
+                        android:contentDescription="@string/logo" />
 
                     <TextView
                         app:layout_constraintTop_toBottomOf="@id/teacher"
@@ -115,7 +119,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Teachers"
+                        android:text="@string/teachers"
                         android:textStyle="bold|italic"
                         android:textSize="18sp" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -143,7 +147,8 @@
                         android:id="@+id/marks"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
-                        android:src="@drawable/marks" />
+                        android:src="@drawable/marks"
+                        android:contentDescription="@string/logo" />
 
                     <TextView
                         app:layout_constraintTop_toBottomOf="@id/marks"
@@ -152,14 +157,14 @@
                         app:layout_constraintStart_toStartOf="parent"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Marks"
+                        android:text="@string/marks"
                         android:textStyle="bold|italic"
                         android:textSize="18sp" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/attendenceBtn"
+                android:id="@+id/attendanceBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
@@ -177,19 +182,21 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        android:id="@+id/attendence"
+                        android:id="@+id/attendance"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
-                        android:src="@drawable/attendence" />
+                        android:src="@drawable/attendance"
+                        android:contentDescription="@string/logo"
+                        tools:ignore="ContentDescription" />
 
                     <TextView
-                        app:layout_constraintTop_toBottomOf="@id/attendence"
+                        app:layout_constraintTop_toBottomOf="@id/attendance"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Attendence"
+                        android:text="@string/attendance"
                         android:textStyle="bold|italic"
                         android:textSize="18sp" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -217,7 +224,8 @@
                         android:id="@+id/subjects"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
-                        android:src="@drawable/subjects" />
+                        android:src="@drawable/subjects"
+                        android:contentDescription="@string/logo" />
 
                     <TextView
                         app:layout_constraintTop_toBottomOf="@id/subjects"
@@ -226,7 +234,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Subjects"
+                        android:text="@string/subjects"
                         android:textStyle="bold|italic"
                         android:textSize="18sp" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -247,7 +255,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:backgroundTint="#ff0000"
-                android:text="sign out"
+                android:text="@string/sign_out"
                 android:textStyle="italic"
                 android:layout_marginBottom="50dp"/>
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -14,5 +14,6 @@
         android:layout_height="match_parent"
         app:srcCompat="@drawable/ksit_logo"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp" />
+        tools:layout_editor_absoluteY="0dp"
+        android:contentDescription="@string/ksit_logo" />
 </androidx.constraintlayout.widget.ConstraintLayout>

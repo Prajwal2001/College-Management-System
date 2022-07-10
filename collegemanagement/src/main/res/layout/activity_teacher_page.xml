@@ -47,7 +47,7 @@
         android:layout_height="wrap_content"
         android:background="#ff0000"
         android:gravity="center"
-        android:text="Sign out"
+        android:text="@string/sign_out"
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="277dp" />
 

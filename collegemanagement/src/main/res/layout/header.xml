@@ -10,6 +10,7 @@
     <ImageView
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:src="@drawable/ksit_logo"/>
+        android:src="@drawable/ksit_logo"
+        android:contentDescription="@string/ksit_logo"/>
 
 </LinearLayout>

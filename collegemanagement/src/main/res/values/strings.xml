@@ -10,4 +10,13 @@
     <string name="navigation_close">Close Navigation drawer</string>
     <string name="update">Update</string>
     <string name="ksit_logo">ksit_logo</string>
+    <string name="add">Add</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="logo">Students Logo</string>
+    <string name="admin_dashboard">Admin Dashboard</string>
+    <string name="students">Students</string>
+    <string name="teachers">Teachers</string>
+    <string name="marks">Marks</string>
+    <string name="attendance">Attendance</string>
+    <string name="subjects">Subjects</string>
 </resources>
