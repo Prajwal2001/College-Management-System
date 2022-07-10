@@ -9,45 +9,65 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#9C27B0" />
+        android:background="@drawable/plz" />
+
+
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
-        android:paddingBottom="30dp">
+        android:paddingBottom="30dp"
+        tools:layout_editor_absoluteX="-16dp"
+        tools:layout_editor_absoluteY="-26dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="150dp"
+                android:layout_marginTop="23dp"
+                android:src="@drawable/ksit_logo_edited"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:contentDescription="@string/ksit_logo"/>
 
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="76dp"
-                android:text="Login"
-                android:textColor="@color/white"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/habibi"
+                android:text="@string/login"
+                android:textAllCaps="true"
+                android:textColor="#FFFFFF"
                 android:textSize="40sp"
-                android:textStyle="bold|italic"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
             <EditText
                 android:id="@+id/password"
                 android:layout_width="280dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/input_bg"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/round_corner"
                 android:drawableStart="@drawable/pwd_logo"
                 android:drawablePadding="5dp"
                 android:ems="10"
+                android:fontFamily="@font/habibi"
                 android:hint="@string/pwd"
                 android:inputType="textPassword"
                 android:padding="12dp"
                 android:textColor="@color/white"
                 android:textColorHint="@color/white"
+                android:importantForAutofill="no"
                 app:layout_constraintEnd_toEndOf="@+id/emailId"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/emailId"
@@ -58,10 +78,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="4dp"
                 android:text="@string/forgot_pwd"
                 android:textColor="@color/white"
                 android:textSize="15sp"
+                android:textStyle="bold|italic"
                 app:layout_constraintEnd_toEndOf="@+id/password"
                 app:layout_constraintTop_toBottomOf="@+id/password" />
 
@@ -69,41 +90,45 @@
                 android:id="@+id/login_btn"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="100dp"
-                android:background="@drawable/input_bg"
+                android:layout_marginTop="120dp"
+                android:background="@drawable/round_corner"
+                android:fontFamily="@font/habibi"
                 android:text="@string/login"
                 android:textColor="@color/white"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.495"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/password" />
 
+
             <EditText
                 android:id="@+id/emailId"
                 android:layout_width="280dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:background="@drawable/input_bg"
+                android:layout_marginTop="69dp"
+                android:background="@drawable/round_corner"
                 android:drawableStart="@drawable/email_logo"
                 android:drawablePadding="5dp"
                 android:ems="10"
+                android:fontFamily="@font/habibi"
                 android:hint="@string/email"
                 android:inputType="textEmailAddress"
                 android:padding="12dp"
                 android:textColor="@color/white"
                 android:textColorHint="@color/white"
+                android:importantForAutofill="no"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.496"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView" />
-
 
             <ProgressBar
                 android:id="@+id/progressBar"
                 style="?android:attr/progressBarStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="44dp"
+                android:layout_marginTop="40dp"
                 android:indeterminate="true"
                 android:indeterminateTint="@color/white"
                 android:indeterminateTintMode="src_atop"
