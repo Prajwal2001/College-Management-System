@@ -14,7 +14,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AddTeacher extends AppCompatActivity {
+public class AddUser extends AppCompatActivity {
 
     private EditText dateOfBirth;
     Button submitBtn;
@@ -26,7 +26,7 @@ public class AddTeacher extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_teacher);
+        setContentView(R.layout.activity_add_user);
 
         dateOfBirth = findViewById(R.id.dob);
         final Calendar calendar = Calendar.getInstance();

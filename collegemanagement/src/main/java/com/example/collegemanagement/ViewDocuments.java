@@ -54,7 +54,7 @@ public class ViewDocuments extends AppCompatActivity {
 
         addBtn.setOnClickListener(view -> {
             if(collection.equals("teacher")) {
-                Intent i = new Intent(getApplicationContext(), AddTeacher.class);
+                Intent i = new Intent(getApplicationContext(), AddUser.class);
                 startActivity(i);
             }
         });

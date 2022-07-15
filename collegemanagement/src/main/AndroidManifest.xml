@@ -33,7 +33,7 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".AddTeacher"
+            android:name=".AddUser"
             android:configChanges="orientation"
             android:exported="false"
             android:screenOrientation="portrait" />
