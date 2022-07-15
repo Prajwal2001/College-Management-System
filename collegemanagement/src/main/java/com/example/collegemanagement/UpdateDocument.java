@@ -59,7 +59,7 @@ public class UpdateDocument extends AppCompatActivity {
                         updateDocList.addView(textView);
 
                         EditText editText = new EditText(this);
-                        editText.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+                        editText.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
                         editText.setTextSize(20f);
                         editText.setInputType(InputType.TYPE_CLASS_TEXT);
                         editText.setText(entry.getValue().toString());
