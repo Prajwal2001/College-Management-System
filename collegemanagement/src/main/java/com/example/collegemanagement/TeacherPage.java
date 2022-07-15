@@ -1,6 +1,7 @@
 package com.example.collegemanagement;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,7 +17,7 @@ public class TeacherPage extends AppCompatActivity {
 
     FirebaseAuth mAuth;
     TextView userName;
-    Button signOutBtn;
+    CardView signOutBtn;
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -26,7 +27,6 @@ public class TeacherPage extends AppCompatActivity {
         setContentView(R.layout.activity_teacher_page);
 
         mAuth = FirebaseAuth.getInstance();
-        userName = findViewById(R.id.userName);
         signOutBtn = findViewById(R.id.signOutBtn);
 
         String uid = mAuth.getCurrentUser().getUid();

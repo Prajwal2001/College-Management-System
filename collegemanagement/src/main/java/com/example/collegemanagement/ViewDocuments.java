@@ -98,6 +98,7 @@ public class ViewDocuments extends AppCompatActivity {
                     update.putExtra("collection", collection);
                     update.putExtra("docId", adapter.getAdapterId(viewHolder.getAdapterPosition()));
                     startActivity(update);
+                    adapter.notifyItemChanged(viewHolder.getAdapterPosition());
                     break;
             }
         }

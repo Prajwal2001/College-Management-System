@@ -1,68 +1,225 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#6876C3"
     tools:context=".TeacherPage">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        android:text="Hello, "
-        android:textSize="40sp"
-        android:textColor="@color/black"
-        android:id="@+id/userName"/>
+        android:id="@+id/linear_layout"
+        android:orientation="vertical">
 
-    <androidx.gridlayout.widget.GridLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="0dp"
-        app:columnCount="2"
-        app:layout_constraintTop_toBottomOf="@+id/userName"
-        app:rowCount="5"
-        tools:ignore="HardcodedText,ContentDescription"
-        tools:layout_editor_absoluteX="0dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#0055ff"
+            android:paddingStart="30dp"
+            android:paddingTop="15dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="15dp">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="@string/admin_dashboard"
+                android:textColor="#ffffff"
+                android:textSize="25sp"
+                tools:ignore="RelativeOverlap" />
 
-        <TextView
-            android:id="@+id/AttendenceBtn"
-            android:layout_width="150dp"
-            android:layout_height="90dp"
-            android:layout_margin="10dp"
-            android:background="@color/purple_700"
-            android:gravity="center"
-            android:text="Take\nAttendence"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="25sp" />
+            <ImageView
+                android:layout_width="92dp"
+                android:layout_height="92dp"
+                android:layout_alignParentEnd="true"
+                android:src="@drawable/ksit_logo_edited"
+                android:contentDescription="@string/ksit_logo" />
 
-    </androidx.gridlayout.widget.GridLayout>
+        </RelativeLayout>
 
-    <Button
-        android:id="@+id/signOutBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#ff0000"
-        android:gravity="center"
-        android:text="@string/sign_out"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="277dp" />
+        <androidx.gridlayout.widget.GridLayout
+            android:id="@+id/grid_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:alignmentMode="alignMargins"
+            app:columnCount="2"
+            app:columnOrderPreserved="false"
+            app:rowCount="3">
 
-    <TextView
-        android:id="@+id/teacherBtn"
-        android:layout_width="150dp"
-        android:layout_height="90dp"
-        android:layout_margin="10dp"
-        android:background="@color/purple_700"
-        android:gravity="center"
-        android:text="Add\nMarks"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="30sp"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="163dp" />
+            <androidx.cardview.widget.CardView
+                android:id="@+id/marksBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="60dp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp">
+                    <ImageView
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:id="@+id/marks"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:src="@drawable/marks"
+                        android:contentDescription="@string/logo" />
+
+                    <TextView
+                        app:layout_constraintTop_toBottomOf="@id/marks"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/marks"
+                        android:textStyle="bold|italic"
+                        android:textSize="18sp" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/attendanceBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="60dp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp">
+                    <ImageView
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:id="@+id/attendance"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:src="@drawable/attendance"
+                        android:contentDescription="@string/logo"
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        app:layout_constraintTop_toBottomOf="@id/attendance"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/attendance"
+                        android:textStyle="bold|italic"
+                        android:textSize="18sp" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/subjectsBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="60dp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp">
+                    <ImageView
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:id="@+id/subjects"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:src="@drawable/subjects"
+                        android:contentDescription="@string/logo" />
+
+                    <TextView
+                        app:layout_constraintTop_toBottomOf="@id/subjects"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/subjects"
+                        android:textStyle="bold|italic"
+                        android:textSize="18sp" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/signOutBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="60dp"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:background="#FF1414"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp">
+                    <ImageView
+                        android:id="@+id/log_out_img"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:src="@drawable/logout"
+                        android:contentDescription="@string/logo" />
+
+                    <TextView
+                        app:layout_constraintTop_toBottomOf="@id/log_out_img"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/sign_out"
+                        android:textStyle="bold|italic"
+                        android:textSize="18sp" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+        </androidx.gridlayout.widget.GridLayout>
+
+        <!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginTop="50dp">-->
+        <!--            <Button-->
+        <!--                android:id="@+id/signOutBtn"-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                app:layout_constraintStart_toStartOf="parent"-->
+        <!--                app:layout_constraintEnd_toEndOf="parent"-->
+        <!--                app:layout_constraintTop_toTopOf="parent"-->
+        <!--                app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--                android:backgroundTint="#ff0000"-->
+        <!--                android:text="@string/sign_out"-->
+        <!--                android:textStyle="italic"-->
+        <!--                android:layout_marginBottom="50dp"/>-->
+        <!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+    </LinearLayout>
+</ScrollView>
