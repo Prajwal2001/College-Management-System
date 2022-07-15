@@ -69,15 +69,19 @@ public class LoginActivity extends AppCompatActivity {
                                                 String item = "";
                                                 for(Map.Entry<String, Object> entry: Objects.requireNonNull(data).entrySet()) {
                                                     item = item.concat(entry.getKey() + ": " + entry.getValue() + "\n");
-                                                    if(item.contains("uid: " + user.getUid())){
+                                                    Toast.makeText(getApplicationContext(), entry.getValue().toString(), Toast.LENGTH_SHORT).show();
+                                                    Toast.makeText(getApplicationContext(), user.getUid(), Toast.LENGTH_SHORT).show();
+                                                    if(entry.getValue().toString().equals(user.getUid())){
                                                         Intent i = new Intent(LoginActivity.this, TeacherPage.class);
                                                         startActivity(i);
                                                     }
+                                                    else Toast.makeText(getApplicationContext(), "Couldn't find UId", Toast.LENGTH_SHORT).show();
                                                 }
                                             }
                                         }
+                                        else Toast.makeText(getApplicationContext(), "User doesn't exist", Toast.LENGTH_SHORT).show();
                                     });
-                        });
+                    });
     }
 
     private void checkForUser(String toString, String toString1) {
