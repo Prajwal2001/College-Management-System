@@ -66,7 +66,6 @@ public class LoginActivity extends AppCompatActivity {
                                         if (documentSnapshots != null) {
                                             for (DocumentSnapshot doc: documentSnapshots) {
                                                 if (Objects.requireNonNull(doc.getString("email")).equalsIgnoreCase(user.getEmail())){
-                                                    Toast.makeText(getApplicationContext(), "Found user: " + user.getEmail(), Toast.LENGTH_SHORT).show();
                                                     Map<String, Object> data = doc.getData();
                                                     for(Map.Entry<String, Object> entry: Objects.requireNonNull(data).entrySet()) {
                                                         if(entry.getValue().toString().equals(user.getUid())){
@@ -85,7 +84,7 @@ public class LoginActivity extends AppCompatActivity {
                     });
     }
 
-    private void checkForUser(String toString, String toString1) {
+    private void checkForUser(String emailString, String passwordString) {
         db.collection("teacher")
                 .addSnapshotListener((documentSnapshots, e) -> {
                     if (documentSnapshots != null) {
@@ -94,25 +93,24 @@ public class LoginActivity extends AppCompatActivity {
                             String item = "";
                             for(Map.Entry<String, Object> entry: Objects.requireNonNull(data).entrySet()) {
                                 item = item.concat(entry.getKey() + ": " + entry.getValue() + "\n");
-                                if(item.contains("email: " + toString)){
-                                    userRegister(toString, toString1, doc.getId());
+                                if(item.contains("email: " + emailString)){
+                                    userRegister(emailString, passwordString, doc.getId());
                                 }
                             }
                         }
                     }
                 });
 
-}
-    private void userRegister(String toString, String toString1, String docId) {
-        mAuth.createUserWithEmailAndPassword(toString, toString1)
+    }
+    private void userRegister(String emailString, String passwordString, String docId) {
+        mAuth.createUserWithEmailAndPassword(emailString, passwordString)
                 .addOnCompleteListener(task -> {
                     if(task.isSuccessful()){
                         FirebaseUser user = mAuth.getCurrentUser();
                         assert user != null;
-                        String uid = user.getUid();
                         db.collection("teacher")
                                 .document(docId)
-                                .update("uid", uid);
+                                .update("uid", user.getUid());
                         Intent i = new Intent(LoginActivity.this, TeacherPage.class);
                         startActivity(i);
                         finish();
@@ -121,7 +119,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private boolean validation(String string, String regEx) {
-
         Pattern pattern = Pattern.compile(regEx);
         return pattern.matcher(string).matches();
     }
