@@ -1,8 +1,6 @@
 package com.example.collegemanagement;
 
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +9,8 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -65,17 +65,18 @@ public class LoginActivity extends AppCompatActivity {
                                     .addSnapshotListener((documentSnapshots, e) -> {
                                         if (documentSnapshots != null) {
                                             for (DocumentSnapshot doc: documentSnapshots) {
-                                                Map<String, Object> data = doc.getData();
-                                                String item = "";
-                                                for(Map.Entry<String, Object> entry: Objects.requireNonNull(data).entrySet()) {
-                                                    item = item.concat(entry.getKey() + ": " + entry.getValue() + "\n");
-                                                    Toast.makeText(getApplicationContext(), entry.getValue().toString(), Toast.LENGTH_SHORT).show();
-                                                    Toast.makeText(getApplicationContext(), user.getUid(), Toast.LENGTH_SHORT).show();
-                                                    if(entry.getValue().toString().equals(user.getUid())){
-                                                        Intent i = new Intent(LoginActivity.this, TeacherPage.class);
-                                                        startActivity(i);
+                                                if (Objects.requireNonNull(doc.getString("email")).equalsIgnoreCase(user.getEmail())){
+                                                    Toast.makeText(getApplicationContext(), "Found user: " + user.getEmail(), Toast.LENGTH_SHORT).show();
+                                                    Map<String, Object> data = doc.getData();
+                                                    for(Map.Entry<String, Object> entry: Objects.requireNonNull(data).entrySet()) {
+                                                        if(entry.getValue().toString().equals(user.getUid())){
+                                                            Intent i = new Intent(LoginActivity.this, TeacherPage.class);
+                                                            startActivity(i);
+                                                        }
+                                                        else {
+                                                            db.collection("teacher").document(doc.getId()).update("uid", user.getUid());
+                                                        }
                                                     }
-                                                    else Toast.makeText(getApplicationContext(), "Couldn't find UId", Toast.LENGTH_SHORT).show();
                                                 }
                                             }
                                         }
@@ -96,9 +97,9 @@ public class LoginActivity extends AppCompatActivity {
                                 if(item.contains("email: " + toString)){
                                     userRegister(toString, toString1, doc.getId());
                                 }
-                                }
                             }
                         }
+                    }
                 });
 
 }
@@ -148,7 +149,6 @@ public class LoginActivity extends AppCompatActivity {
 
 
         login.setOnClickListener(view -> {
-
             boolean emailValidated = validation(inputEmail.getText().toString(), emailRegEx);
             boolean passwordValidated = validation(inputPass.getText().toString(), passwordRegEx);
 
@@ -157,6 +157,7 @@ public class LoginActivity extends AppCompatActivity {
                 mAuth.signInWithEmailAndPassword(inputEmail.getText().toString(), inputPass.getText().toString())
                         .addOnCompleteListener(this, task -> {
                             if (task.isSuccessful()) {
+                                Toast.makeText(this, "Logged In Successfully", Toast.LENGTH_SHORT).show();
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 updateSignIn(user);
                             } else {
