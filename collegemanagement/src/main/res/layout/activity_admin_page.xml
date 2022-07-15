@@ -70,7 +70,7 @@
                         android:id="@+id/student"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
-                        android:src="@drawable/students"
+                        android:src="@drawable/student"
                         android:contentDescription="@string/logo" />
 
                     <TextView
@@ -224,7 +224,7 @@
                         android:id="@+id/subjects"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
-                        android:src="@drawable/subjects"
+                        android:src="@drawable/subject"
                         android:contentDescription="@string/logo" />
 
                     <TextView
