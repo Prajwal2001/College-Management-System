@@ -33,10 +33,10 @@ public class ViewDocuments extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_documents);
-        String heading = collection.substring(0, 1).toUpperCase()+collection.substring(1) + " List";
-        ((TextView)findViewById(R.id.viewCollection)).setText(heading);
         Intent intent = getIntent();
         collection = intent.getStringExtra("collection");
+        String heading = collection.substring(0, 1).toUpperCase()+collection.substring(1) + " List";
+        ((TextView)findViewById(R.id.viewCollection)).setText(heading);
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         addBtn = findViewById(R.id.button);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
