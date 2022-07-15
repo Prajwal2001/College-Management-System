@@ -28,6 +28,7 @@
             tools:ignore="RelativeOverlap" />
 
         <ImageView
+            android:id="@+id/viewDocImage"
             android:layout_width="92dp"
             android:layout_height="92dp"
             android:layout_alignParentEnd="true"
