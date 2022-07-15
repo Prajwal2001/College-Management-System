@@ -4,6 +4,8 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -17,6 +19,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.AbstractMap;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
@@ -32,9 +35,18 @@ public class ViewDocuments extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_documents);
-
         Intent intent = getIntent();
         collection = intent.getStringExtra("collection");
+        String heading = collection.substring(0, 1).toUpperCase()+collection.substring(1) + " List";
+        ((TextView)findViewById(R.id.viewCollection)).setText(heading);
+        HashMap<String, Integer> drawables = new HashMap<>();
+        drawables.put("student", R.drawable.student);
+        drawables.put("teacher", R.drawable.teacher);
+        drawables.put("marks", R.drawable.marks);
+        drawables.put("subject", R.drawable.subject);
+        drawables.put("attendance",R.drawable.attendance);
+        ((ImageView)findViewById(R.id.viewDocImage)).setImageResource((drawables.get(collection)));
+
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         addBtn = findViewById(R.id.button);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -96,6 +108,7 @@ public class ViewDocuments extends AppCompatActivity {
                     update.putExtra("collection", collection);
                     update.putExtra("docId", adapter.getAdapterId(viewHolder.getAdapterPosition()));
                     startActivity(update);
+                    adapter.notifyItemChanged(viewHolder.getAdapterPosition());
                     break;
             }
         }

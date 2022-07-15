@@ -10,25 +10,28 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CollegeManagement">
         <activity
-            android:configChanges="orientation"
-            android:screenOrientation="portrait"
-            android:name=".UpdateDocument"
+            android:name=".StudentPage"
             android:exported="false" />
+        <activity
+            android:name=".UpdateDocument"
+            android:configChanges="orientation"
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ViewDocuments"
             android:configChanges="orientation"
-            android:screenOrientation="portrait"
-            android:exported="false"/>
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".TeacherPage"
             android:configChanges="orientation"
-            android:screenOrientation="portrait"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".LoginActivity"
             android:configChanges="orientation"
-            android:screenOrientation="portrait"
-            android:exported="false"/>
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".AddCollection"
             android:configChanges="orientation"

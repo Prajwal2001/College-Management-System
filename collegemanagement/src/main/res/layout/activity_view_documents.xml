@@ -7,6 +7,44 @@
     android:layout_height="match_parent"
     tools:context=".ViewDocuments">
 
+    <RelativeLayout
+        android:id="@+id/headSecViewCollection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#0055ff"
+        android:paddingStart="30dp"
+        android:paddingTop="15dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="15dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/viewCollection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:textColor="#ffffff"
+            android:textSize="25sp"
+            tools:ignore="RelativeOverlap" />
+
+        <ImageView
+            android:id="@+id/viewDocImage"
+            android:layout_width="92dp"
+            android:layout_height="92dp"
+            android:layout_alignParentEnd="true"
+            android:contentDescription="@string/ksit_logo"
+            android:src="@drawable/ksit_logo_edited" />
+
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="480dp"
+        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintTop_toBottomOf="@+id/headSecViewCollection"
+        tools:layout_editor_absoluteX="5dp" />
+
     <Button
         android:id="@+id/button"
         android:layout_width="match_parent"
@@ -17,18 +55,11 @@
         android:background="@color/black"
         android:text="@string/add"
         android:textAllCaps="true"
+        android:textSize="20sp"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.444"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="60dp"
-        app:layout_constraintTop_toBottomOf="@+id/button"
-        tools:layout_editor_absoluteX="5dp" />
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
