@@ -251,7 +251,7 @@
                 app:layout_rowWeight="1">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:background="#FF0000"
+                    android:background="#99FF0000"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingTop="20dp"

@@ -147,7 +147,7 @@
                         android:id="@+id/subjects"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
-                        android:src="@drawable/subjects"
+                        android:src="@drawable/subject"
                         android:contentDescription="@string/logo" />
 
                     <TextView
@@ -174,7 +174,7 @@
                 app:layout_rowWeight="1">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:background="#FF1414"
+                    android:background="#99FF0000"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingTop="20dp"
@@ -196,6 +196,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/sign_out"
+                        android:textColor="@color/white"
                         android:textStyle="bold|italic"
                         android:textSize="18sp" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
