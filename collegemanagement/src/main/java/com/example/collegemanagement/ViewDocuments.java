@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -32,7 +33,8 @@ public class ViewDocuments extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_documents);
-
+        String heading = collection.substring(0, 1).toUpperCase()+collection.substring(1) + " List";
+        ((TextView)findViewById(R.id.viewCollection)).setText(heading);
         Intent intent = getIntent();
         collection = intent.getStringExtra("collection");
         RecyclerView recyclerView = findViewById(R.id.recyclerView);

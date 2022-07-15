@@ -31,6 +31,9 @@ public class UpdateDocument extends AppCompatActivity {
         Intent update = getIntent();
         String collection = update.getStringExtra("collection");
         String docId = update.getStringExtra("docId");
+
+        String heading = "Update " + collection.substring(0, 1).toUpperCase()+collection.substring(1);
+        ((TextView)findViewById(R.id.viewDocHead)).setText(heading);
         LinearLayout updateDocList = findViewById(R.id.updateDocList);
         LinkedList<Map.Entry <String, EditText>> editTexts = new LinkedList<>();
 
