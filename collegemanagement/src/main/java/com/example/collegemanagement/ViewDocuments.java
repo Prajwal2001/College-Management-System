@@ -45,16 +45,18 @@ public class ViewDocuments extends AppCompatActivity {
         drawables.put("marks", R.drawable.marks);
         drawables.put("subject", R.drawable.subject);
         drawables.put("attendance",R.drawable.attendance);
-        ((ImageView)findViewById(R.id.viewDocImage)).setImageResource((drawables.get(collection)));
+        //noinspection ConstantConditions
+        ((ImageView)findViewById(R.id.viewDocImage)).setImageResource(drawables.get(collection));
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         addBtn = findViewById(R.id.button);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         addBtn.setOnClickListener(view -> {
-            Intent i = new Intent(getApplicationContext(), AddCollection.class);
-            i.putExtra("collection",collection);
-            startActivity(i);
+            if(collection.equals("teacher")) {
+                Intent i = new Intent(getApplicationContext(), AddUser.class);
+                startActivity(i);
+            }
         });
         db.collection(collection)
                 .addSnapshotListener((documentSnapshots, e) -> {
