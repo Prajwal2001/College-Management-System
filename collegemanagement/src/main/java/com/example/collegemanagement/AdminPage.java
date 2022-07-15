@@ -21,8 +21,7 @@ public class AdminPage extends AppCompatActivity {
     NavigationView navigationView;
     Toolbar toolbar;
 
-    Button signOutBtn;
-    CardView studentBtn, teacherBtn, subjectBtn, marksBtn;
+    CardView studentBtn, teacherBtn, subjectBtn, marksBtn, signOutBtn;
     private FirebaseAuth mAuth;
 
     @Override

@@ -19,4 +19,5 @@
     <string name="marks">Marks</string>
     <string name="attendance">Attendance</string>
     <string name="subjects">Subjects</string>
+    <string name="logout">Log Out</string>
 </resources>

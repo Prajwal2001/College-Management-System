@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AdminPage">
+    tools:context=".StudentPage">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -47,83 +47,6 @@
             app:columnCount="2"
             app:columnOrderPreserved="false"
             app:rowCount="3">
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/studentBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                app:cardCornerRadius="10dp"
-                app:cardElevation="60dp"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="20dp"
-                    android:paddingBottom="20dp">
-                    <ImageView
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        android:id="@+id/student"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:src="@drawable/students"
-                        android:contentDescription="@string/logo" />
-
-                    <TextView
-                        app:layout_constraintTop_toBottomOf="@id/student"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/students"
-                        android:textStyle="bold|italic"
-                        android:textSize="18sp" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/teacherBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                app:cardCornerRadius="10dp"
-                app:cardElevation="60dp"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="20dp"
-                    android:paddingBottom="20dp">
-                    <ImageView
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        android:id="@+id/teacher"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:src="@drawable/teacher"
-                        android:contentDescription="@string/logo" />
-
-                    <TextView
-                        app:layout_constraintTop_toBottomOf="@id/teacher"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/teachers"
-                        android:textStyle="bold|italic"
-                        android:textSize="18sp" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/marksBtn"
@@ -251,7 +174,7 @@
                 app:layout_rowWeight="1">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:background="#FF0000"
+                    android:background="#33FF1414"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingTop="20dp"
@@ -273,7 +196,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/sign_out"
-                        android:textColor="@color/white"
                         android:textStyle="bold|italic"
                         android:textSize="18sp" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -281,6 +203,23 @@
 
         </androidx.gridlayout.widget.GridLayout>
 
+<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="50dp">-->
+<!--            <Button-->
+<!--                android:id="@+id/signOutBtn"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                android:backgroundTint="#ff0000"-->
+<!--                android:text="@string/sign_out"-->
+<!--                android:textStyle="italic"-->
+<!--                android:layout_marginBottom="50dp"/>-->
+<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
 
     </LinearLayout>
 
