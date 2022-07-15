@@ -174,7 +174,7 @@
                 app:layout_rowWeight="1">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:background="#FF1414"
+                    android:background="#99FF0000"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingTop="20dp"
@@ -196,30 +196,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/sign_out"
+                        android:textColor="@color/white"
                         android:textStyle="bold|italic"
                         android:textSize="18sp" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
 
         </androidx.gridlayout.widget.GridLayout>
-
-        <!--        <androidx.constraintlayout.widget.ConstraintLayout-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_marginTop="50dp">-->
-        <!--            <Button-->
-        <!--                android:id="@+id/signOutBtn"-->
-        <!--                android:layout_width="wrap_content"-->
-        <!--                android:layout_height="wrap_content"-->
-        <!--                app:layout_constraintStart_toStartOf="parent"-->
-        <!--                app:layout_constraintEnd_toEndOf="parent"-->
-        <!--                app:layout_constraintTop_toTopOf="parent"-->
-        <!--                app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--                android:backgroundTint="#ff0000"-->
-        <!--                android:text="@string/sign_out"-->
-        <!--                android:textStyle="italic"-->
-        <!--                android:layout_marginBottom="50dp"/>-->
-        <!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
 
     </LinearLayout>
 </ScrollView>
