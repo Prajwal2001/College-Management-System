@@ -1,4 +1,4 @@
-package com.example.collegemanagement;
+package com.example.collegeManagement;
 
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -7,6 +7,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import com.example.collegemanagement.R;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class AdminPage extends AppCompatActivity {

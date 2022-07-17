@@ -1,4 +1,4 @@
-package com.example.collegemanagement;
+package com.example.collegeManagement;
 
 import android.content.Context;
 

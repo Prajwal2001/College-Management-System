@@ -1,9 +1,7 @@
-package com.example.collegemanagement;
+package com.example.collegeManagement;
 
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.InputType;
-import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,12 +10,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.firestore.DocumentReference;
+import com.example.collegemanagement.R;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import org.json.JSONException;
@@ -58,7 +53,7 @@ public class AddCollection extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
             else if(doc!=null){
                 try {
-                    JSONObject json = new JSONObject((doc.getData().get(collection).toString()).replaceAll("=", "=\"\""));
+                    @SuppressWarnings("ConstantConditions") JSONObject json = new JSONObject((doc.getData().get(collection).toString()).replaceAll("=", "=\"\""));
                     for (Iterator<String> it = json.keys(); it.hasNext(); ) {
                         String key = it.next();
 
@@ -84,19 +79,13 @@ public class AddCollection extends AppCompatActivity {
                         }
                         db.collection(collection)
                                 .add(data)
-                                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                                    @Override
-                                    public void onSuccess(DocumentReference documentReference) {
+                                .addOnSuccessListener(documentReference -> {
 //                                        Log.d("Add Data", "DocumentSnapshot written to: " + collection);
-                                        Toast.makeText(getApplicationContext(), "Document Added to " + collection, Toast.LENGTH_SHORT).show();
-                                    }
+                                    Toast.makeText(getApplicationContext(), "Document Added to " + collection, Toast.LENGTH_SHORT).show();
                                 })
-                                .addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
+                                .addOnFailureListener(e1 -> {
 //                                        Log.w("Add Data", "Error adding document", e);
-                                        Toast.makeText(getApplicationContext(), "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                                    }
+                                    Toast.makeText(getApplicationContext(), "Error: " + e1.getMessage(), Toast.LENGTH_SHORT).show();
                                 });
                         finish();
                     });

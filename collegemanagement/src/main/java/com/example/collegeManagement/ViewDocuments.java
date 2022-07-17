@@ -1,4 +1,4 @@
-package com.example.collegemanagement;
+package com.example.collegeManagement;
 
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.collegemanagement.R;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 

@@ -1,4 +1,4 @@
-package com.example.collegemanagement;
+package com.example.collegeManagement;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.collegemanagement.R;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Calendar;
@@ -27,7 +28,6 @@ public class AddUser extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_user);
-
         dateOfBirth = findViewById(R.id.dob);
         final Calendar calendar = Calendar.getInstance();
         final int year = calendar.get(Calendar.YEAR);

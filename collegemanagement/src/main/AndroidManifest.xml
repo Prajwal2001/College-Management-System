@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.collegemanagement">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.collegeManagement">
 
     <application
         android:allowBackup="true"
@@ -8,51 +9,53 @@
         android:label="@string/app_name"
         android:roundIcon="@drawable/ksit_logo_edited"
         android:supportsRtl="true"
-        android:theme="@style/Theme.CollegeManagement">
+        android:theme="@style/Theme.CollegeManagement"
+        tools:ignore="LockedOrientationActivity">
         <activity
-            android:name=".AddCollection"
-            android:exported="false" />
+            android:name="com.example.collegeManagement.AddCollection"
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
-            android:name=".StudentPage"
-            android:exported="false" />
+            android:name="com.example.collegeManagement.StudentPage"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
-            android:name=".UpdateDocument"
+            android:name="com.example.collegeManagement.UpdateDocument"
             android:configChanges="orientation"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ViewDocuments"
+            android:name="com.example.collegeManagement.ViewDocuments"
             android:configChanges="orientation"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".TeacherPage"
+            android:name="com.example.collegeManagement.TeacherPage"
             android:configChanges="orientation"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".LoginActivity"
+            android:name="com.example.collegeManagement.LoginActivity"
             android:configChanges="orientation"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".AddUser"
+            android:name="com.example.collegeManagement.AddUser"
             android:configChanges="orientation"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".AdminPage"
+            android:name="com.example.collegeManagement.AdminPage"
             android:configChanges="orientation"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".MainActivity"
+            android:name="com.example.collegeManagement.MainActivity"
             android:configChanges="orientation"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

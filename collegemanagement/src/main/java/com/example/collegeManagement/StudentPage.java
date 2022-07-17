@@ -1,8 +1,10 @@
-package com.example.collegemanagement;
+package com.example.collegeManagement;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.collegemanagement.R;
 
 public class StudentPage extends AppCompatActivity {
 
