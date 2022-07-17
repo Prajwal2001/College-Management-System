@@ -1,4 +1,4 @@
-package com.example.collegeManagement;
+package com.example.collegemanagement;
 
 import android.os.Bundle;
 import android.text.InputType;
@@ -12,7 +12,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.collegemanagement.R;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import org.json.JSONException;

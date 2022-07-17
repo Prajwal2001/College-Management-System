@@ -4,14 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.collegeManagement.AddCollection">
+    tools:context="com.example.collegemanagement.AddCollection">
 
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <LinearLayout
-                android:id="@+id/addColLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -46,6 +45,12 @@
                         android:contentDescription="@string/ksit_logo" />
 
                 </RelativeLayout>
+                <LinearLayout
+                    android:id="@+id/addColLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="450dp"
+                    android:padding="16dp"
+                    android:orientation="vertical"/>
             </LinearLayout>
         </ScrollView>
 
@@ -53,10 +58,10 @@
         android:id="@+id/submitBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="16dp"
         android:text="@string/submit"
         android:textColor="@color/white"
-        android:background="@color/design_default_color_primary"
+        android:background="@color/purple_700"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

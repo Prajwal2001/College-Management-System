@@ -1,4 +1,4 @@
-package com.example.collegeManagement;
+package com.example.collegemanagement;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
@@ -8,7 +8,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.collegemanagement.R;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Calendar;

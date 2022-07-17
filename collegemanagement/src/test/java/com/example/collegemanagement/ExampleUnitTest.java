@@ -1,4 +1,4 @@
-package com.example.collegeManagement;
+package com.example.collegemanagement;
 
 import org.junit.Test;
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.collegeManagement">
+    package="com.example.collegemanagement">
 
     <application
         android:allowBackup="true"
@@ -12,45 +12,45 @@
         android:theme="@style/Theme.CollegeManagement"
         tools:ignore="LockedOrientationActivity">
         <activity
-            android:name="com.example.collegeManagement.AddCollection"
+            android:name="com.example.collegemanagement.AddCollection"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.example.collegeManagement.StudentPage"
+            android:name="com.example.collegemanagement.StudentPage"
             android:exported="false"
             android:screenOrientation="portrait"/>
         <activity
-            android:name="com.example.collegeManagement.UpdateDocument"
+            android:name="com.example.collegemanagement.UpdateDocument"
             android:configChanges="orientation"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.example.collegeManagement.ViewDocuments"
+            android:name="com.example.collegemanagement.ViewDocuments"
             android:configChanges="orientation"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.example.collegeManagement.TeacherPage"
+            android:name="com.example.collegemanagement.TeacherPage"
             android:configChanges="orientation"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.example.collegeManagement.LoginActivity"
+            android:name="com.example.collegemanagement.LoginActivity"
             android:configChanges="orientation"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.example.collegeManagement.AddUser"
+            android:name="com.example.collegemanagement.AddUser"
             android:configChanges="orientation"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.example.collegeManagement.AdminPage"
+            android:name="com.example.collegemanagement.AdminPage"
             android:configChanges="orientation"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.example.collegeManagement.MainActivity"
+            android:name="com.example.collegemanagement.MainActivity"
             android:configChanges="orientation"
             android:exported="true"
             android:screenOrientation="portrait">
