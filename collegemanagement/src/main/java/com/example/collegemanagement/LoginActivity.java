@@ -23,8 +23,6 @@ import java.util.regex.Pattern;
 
 public class LoginActivity extends AppCompatActivity {
 
-    public static String USER_TYPE;
-
     Button login;
     ProgressBar circularPB;
     EditText inputEmail, inputPass;

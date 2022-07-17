@@ -52,12 +52,18 @@ public class ViewDocuments extends AppCompatActivity {
         addBtn = findViewById(R.id.button);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        addBtn.setOnClickListener(view -> {
-            if(collection.equals("teacher")) {
+        if(collection.equals("teacher"))
+            addBtn.setOnClickListener(v -> {
                 Intent i = new Intent(getApplicationContext(), AddUser.class);
                 startActivity(i);
-            }
-        });
+            });
+        else
+            addBtn.setOnClickListener(v->{
+                Intent intent1 = new Intent(ViewDocuments.this, AddCollection.class);
+                intent1.putExtra("collection", collection);
+                startActivity(intent1);
+            });
+
         db.collection(collection)
                 .addSnapshotListener((documentSnapshots, e) -> {
                     if (e != null)

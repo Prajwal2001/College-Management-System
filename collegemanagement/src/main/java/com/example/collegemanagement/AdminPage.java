@@ -3,25 +3,15 @@ package com.example.collegemanagement;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
-import androidx.drawerlayout.widget.DrawerLayout;
 
-import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class AdminPage extends AppCompatActivity {
 
-    public static String USER;
-
-    DrawerLayout drawerLayout;
-    NavigationView navigationView;
-    Toolbar toolbar;
-
-    CardView studentBtn, teacherBtn, subjectBtn, marksBtn, signOutBtn;
+    CardView studentBtn, teacherBtn, subjectBtn, marksBtn, attendanceBtn,  signOutBtn;
     private FirebaseAuth mAuth;
 
     @Override
@@ -62,11 +52,13 @@ public class AdminPage extends AppCompatActivity {
         studentBtn = findViewById(R.id.studentBtn);
         teacherBtn = findViewById(R.id.teacherBtn);
         subjectBtn = findViewById(R.id.subjectsBtn);
+        attendanceBtn = findViewById(R.id.attendanceBtn);
         marksBtn = findViewById(R.id.marksBtn);
 
         studentBtn.setOnClickListener(view -> activityManager("student", ViewDocuments.class));
         teacherBtn.setOnClickListener(view -> activityManager("teacher", ViewDocuments.class));
         subjectBtn.setOnClickListener(view -> activityManager("subject", ViewDocuments.class));
+        attendanceBtn.setOnClickListener(view -> activityManager("attendance", ViewDocuments.class));
         marksBtn.setOnClickListener(view -> activityManager("marks", ViewDocuments.class));
 
         signOutBtn.setOnClickListener(view -> new AlertDialog.Builder(AdminPage.this)
@@ -74,7 +66,6 @@ public class AdminPage extends AppCompatActivity {
                 .setPositiveButton("Yes", (dialog, which) -> {
                     mAuth.signOut();
                     Intent i = new Intent(AdminPage.this, MainActivity.class);
-                    LoginActivity.USER_TYPE = "";
                     startActivity(i);
                 })
                 .setNegativeButton("No", (dialog, which) -> {})

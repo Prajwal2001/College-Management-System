@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CollegeManagement">
         <activity
+            android:name=".AddCollection"
+            android:exported="false" />
+        <activity
             android:name=".StudentPage"
             android:exported="false" />
         <activity
