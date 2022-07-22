@@ -57,6 +57,7 @@ public class StudentPage extends AppCompatActivity {
     private void activityManager(String collection) {
         Intent intent = new Intent(StudentPage.this, ViewDocuments.class);
         intent.putExtra("collection", collection);
+        intent.putExtra("userType", "student");
         startActivity(intent);
     }
 }

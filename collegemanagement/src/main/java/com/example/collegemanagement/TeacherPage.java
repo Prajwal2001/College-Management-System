@@ -60,6 +60,7 @@ public class TeacherPage extends AppCompatActivity {
     private void activityManager(String collection) {
         Intent intent = new Intent(TeacherPage.this, ViewDocuments.class);
         intent.putExtra("collection", collection);
+        intent.putExtra("userType", "teacher");
         startActivity(intent);
     }
 }

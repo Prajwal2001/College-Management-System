@@ -28,7 +28,7 @@ public class ViewDocuments extends AppCompatActivity {
     RecyclerDocumentAdapter adapter;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     ArrayList<Map.Entry<String, String>> list = new ArrayList<>();
-    String collection;
+    String collection, userType;
     Button addBtn;
 
     @Override
@@ -36,9 +36,12 @@ public class ViewDocuments extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_documents);
         Intent intent = getIntent();
+
+        userType = intent.getStringExtra("userType");
         collection = intent.getStringExtra("collection");
         String heading = collection.substring(0, 1).toUpperCase()+collection.substring(1) + " List";
         ((TextView)findViewById(R.id.viewCollection)).setText(heading);
+
         HashMap<String, Integer> drawables = new HashMap<>();
         drawables.put("student", R.drawable.student);
         drawables.put("teacher", R.drawable.teacher);
@@ -64,24 +67,26 @@ public class ViewDocuments extends AppCompatActivity {
                 startActivity(intent1);
             });
 
-        db.collection(collection)
-                .addSnapshotListener((documentSnapshots, e) -> {
-                    if (e != null)
-                        Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                    list.clear();
-                    if (documentSnapshots != null) {
-                        for (DocumentSnapshot doc: documentSnapshots) {
-                            Map<String, Object> data = doc.getData();
-                            String item = "";
-                            for(Map.Entry<String, Object> entry: Objects.requireNonNull(data).entrySet())
-                                item = item.concat(entry.getKey() + ": " + entry.getValue() + "\n");
+        //if (userType.equals("admin"))
+            db.collection(collection)
+                    .addSnapshotListener((documentSnapshots, e) -> {
+                        if (e != null)
+                            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                        list.clear();
+                        if (documentSnapshots != null) {
+                            for (DocumentSnapshot doc: documentSnapshots) {
+                                Map<String, Object> data = doc.getData();
+                                String item = "";
+                                for(Map.Entry<String, Object> entry: Objects.requireNonNull(data).entrySet())
+                                    item = item.concat(entry.getKey() + ": " + entry.getValue() + "\n");
 
-                            list.add(new AbstractMap.SimpleEntry<>(doc.getId(), item));
+                                list.add(new AbstractMap.SimpleEntry<>(doc.getId(), item));
+                            }
                         }
-                    }
-                    adapter = new RecyclerDocumentAdapter(this, list);
-                    recyclerView.setAdapter(adapter);
-                });
+                        adapter = new RecyclerDocumentAdapter(this, list);
+                        recyclerView.setAdapter(adapter);
+                    });
+        //else if (userType.equals("teacher"))
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
         itemTouchHelper.attachToRecyclerView(recyclerView);
     }
