@@ -67,26 +67,24 @@ public class ViewDocuments extends AppCompatActivity {
                 startActivity(intent1);
             });
 
-        //if (userType.equals("admin"))
-            db.collection(collection)
-                    .addSnapshotListener((documentSnapshots, e) -> {
-                        if (e != null)
-                            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                        list.clear();
-                        if (documentSnapshots != null) {
-                            for (DocumentSnapshot doc: documentSnapshots) {
-                                Map<String, Object> data = doc.getData();
-                                String item = "";
-                                for(Map.Entry<String, Object> entry: Objects.requireNonNull(data).entrySet())
-                                    item = item.concat(entry.getKey() + ": " + entry.getValue() + "\n");
+        db.collection(collection)
+                .addSnapshotListener((documentSnapshots, e) -> {
+                    if (e != null)
+                        Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                    list.clear();
+                    if (documentSnapshots != null) {
+                        for (DocumentSnapshot doc: documentSnapshots) {
+                            Map<String, Object> data = doc.getData();
+                            String item = "";
+                            for(Map.Entry<String, Object> entry: Objects.requireNonNull(data).entrySet())
+                                item = item.concat(entry.getKey() + ": " + entry.getValue() + "\n");
 
-                                list.add(new AbstractMap.SimpleEntry<>(doc.getId(), item));
-                            }
+                            list.add(new AbstractMap.SimpleEntry<>(doc.getId(), item));
                         }
-                        adapter = new RecyclerDocumentAdapter(this, list);
-                        recyclerView.setAdapter(adapter);
-                    });
-        //else if (userType.equals("teacher"))
+                    }
+                    adapter = new RecyclerDocumentAdapter(this, list);
+                    recyclerView.setAdapter(adapter);
+                });
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
         itemTouchHelper.attachToRecyclerView(recyclerView);
     }
