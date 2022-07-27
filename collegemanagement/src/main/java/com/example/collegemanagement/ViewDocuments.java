@@ -97,7 +97,7 @@ public class ViewDocuments extends AppCompatActivity {
             switch (direction) {
                 case ItemTouchHelper.LEFT:
                     new AlertDialog.Builder(viewHolder.itemView.getContext())
-                            .setMessage("Are you sure?")
+                            .setMessage("Are you sure you want to delete this record?")
                             .setPositiveButton("Yes", (dialog, which) -> {
                                 int pos = viewHolder.getAdapterPosition();
                                 Toast.makeText(ViewDocuments.this, "Deleted:"+ pos, Toast.LENGTH_SHORT).show();
@@ -111,7 +111,6 @@ public class ViewDocuments extends AppCompatActivity {
                     break;
 
                 case ItemTouchHelper.RIGHT:
-//                    Toast.makeText(ViewDocuments.this, collection + ": "+ adapter.getAdapterId(viewHolder.getAdapterPosition()), Toast.LENGTH_SHORT).show();
                     Intent update = new Intent(getApplicationContext(), UpdateDocument.class);
                     update.putExtra("collection", collection);
                     update.putExtra("docId", adapter.getAdapterId(viewHolder.getAdapterPosition()));

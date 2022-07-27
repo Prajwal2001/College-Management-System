@@ -32,20 +32,7 @@ public class AdminPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_page);
 
-//        Toast.makeText(this, "" + LoginActivity.USER_TYPE, Toast.LENGTH_SHORT).show();
-
         mAuth = FirebaseAuth.getInstance();
-
-//        drawerLayout = findViewById(R.id.drawer_layout);
-//        navigationView = findViewById(R.id.navigation_view);
-//        toolbar = findViewById(R.id.toolbar);
-
-//        setSupportActionBar(toolbar);
-//
-//        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_open, R.string.navigation_close);
-//        drawerLayout.addDrawerListener(toggle);
-//        toggle.syncState();
-
 
         signOutBtn = findViewById(R.id.signOutBtn);
 
