@@ -28,7 +28,7 @@ public class ViewDocuments extends AppCompatActivity {
     RecyclerDocumentAdapter adapter;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     ArrayList<Map.Entry<String, String>> list = new ArrayList<>();
-    String collection;
+    String collection, userType;
     Button addBtn;
 
     @Override
@@ -36,9 +36,12 @@ public class ViewDocuments extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_documents);
         Intent intent = getIntent();
+
+        userType = intent.getStringExtra("userType");
         collection = intent.getStringExtra("collection");
         String heading = collection.substring(0, 1).toUpperCase()+collection.substring(1) + " List";
         ((TextView)findViewById(R.id.viewCollection)).setText(heading);
+
         HashMap<String, Integer> drawables = new HashMap<>();
         drawables.put("student", R.drawable.student);
         drawables.put("teacher", R.drawable.teacher);

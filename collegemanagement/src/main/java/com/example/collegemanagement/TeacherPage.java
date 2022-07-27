@@ -16,7 +16,7 @@ public class TeacherPage extends AppCompatActivity {
 
     FirebaseAuth mAuth;
     TextView userName;
-    CardView signOutBtn;
+    CardView signOutBtn, marksBtn, attendanceBtn, subjectsBtn;
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -27,6 +27,9 @@ public class TeacherPage extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         signOutBtn = findViewById(R.id.signOutBtn);
+        attendanceBtn = findViewById(R.id.attendanceBtn);
+        subjectsBtn = findViewById(R.id.subjectsBtn);
+        marksBtn = findViewById(R.id.marksBtn);
 
         String uid = mAuth.getCurrentUser().getUid();
         db.collection("teacher").document(uid).get().addOnCompleteListener(task -> {
@@ -44,10 +47,20 @@ public class TeacherPage extends AppCompatActivity {
             }
         });
 
+        subjectsBtn.setOnClickListener(view -> activityManager("subject"));
+        attendanceBtn.setOnClickListener(view -> activityManager("attendance"));
+        marksBtn.setOnClickListener(view -> activityManager("marks"));
 
         signOutBtn.setOnClickListener(v -> {
             mAuth.signOut();
             startActivity(new Intent(TeacherPage.this, LoginActivity.class));
         });
+    }
+
+    private void activityManager(String collection) {
+        Intent intent = new Intent(TeacherPage.this, ViewDocuments.class);
+        intent.putExtra("collection", collection);
+        intent.putExtra("userType", "teacher");
+        startActivity(intent);
     }
 }

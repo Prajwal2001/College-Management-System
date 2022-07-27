@@ -24,6 +24,7 @@ public class AdminPage extends AppCompatActivity {
     private void activityManager(String collection, Class<?> className) {
         Intent intent = new Intent(AdminPage.this, className);
         intent.putExtra("collection", collection);
+        intent.putExtra("userType", "admin");
         startActivity(intent);
     }
 
