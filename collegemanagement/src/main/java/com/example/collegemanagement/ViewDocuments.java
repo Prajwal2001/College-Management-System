@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Random;
 
 public class ViewDocuments extends AppCompatActivity {
 
@@ -78,7 +79,6 @@ public class ViewDocuments extends AppCompatActivity {
                             String item = "";
                             for(Map.Entry<String, Object> entry: Objects.requireNonNull(data).entrySet())
                                 item = item.concat(entry.getKey() + ": " + entry.getValue() + "\n");
-
                             list.add(new AbstractMap.SimpleEntry<>(doc.getId(), item));
                         }
                     }
